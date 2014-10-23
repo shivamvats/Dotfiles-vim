@@ -9,7 +9,7 @@ set encoding=utf-8
 "
 " Display extra whitespace
 "set fillchars+=stl:\ ,stlnc: 
-set list listchars=tab:▸\ ,trail:·,eol:¬         " Invisibles using the Textmate style
+set list listchars=tab:▸\ ,trail:·,eol:¬
 set mps+=<:>
 "
 set autowrite
@@ -32,9 +32,8 @@ set incsearch
 set confirm
 set number
 set laststatus=2
-set norelativenumber
 "
-set timeoutlen=500
+set timeout timeoutlen=500 ttimeoutlen=1
 set autoread
 "
 set novisualbell
@@ -57,6 +56,9 @@ set clipboard=unnamedplus
 "
 set foldmethod=indent
 set foldlevel=99
+"
+" Minimal number of screen lines to keep above and below the cursor
+set scrolloff=10
 "
 " Instead of these two options, we can set a single directory for all backups
 " and temporary buffers. This is a better solution in case we don't want our
@@ -95,7 +97,7 @@ nmap <Leader>tt :tabnew<cr>
 nmap <Leader>tn :tabnext<cr>
 nmap <Leader>tp :tabprevious<cr>
 nmap <Leader>tc :tabclose<cr>
-
+"
 """ Commands
 "
 " Set syntax if terminal supports colors
@@ -143,7 +145,7 @@ set spellfile=~/.vim/spell/en.utf-8.add
 if has('gui_running')
   set guifont=Droid\ Sans\ Mono\ 10
 endif
-
+"
 "
 au VimResized * :wincmd =
 "
@@ -168,19 +170,27 @@ set wildignore+=*.orig "Merge resolution files"
 
 """ Plugin specific settings
 "
+"" YouCompleteMe
 " Set it to 0 if your tags are on a network directory
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_filetype_blacklist = {
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'text' : 1,
+      \ 'unite' : 1
+      \}
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_goto_buffer_command='vertical-split'
 "
-" nerdTree
+"" nerdTree
 nnoremap <F9> :NERDTreeToggle<cr>
-let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
+let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.vim$', '\~$', '\.pyc$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "
-" ctrl-p
-let g:ctrlp_map = '<c-p>'
 "
-" vim-airline
+"" vim-airline
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
  if !exists('g:airline_symbols')
@@ -190,26 +200,57 @@ let g:airline_symbols.space="\u3000"
 "
 set tags=./tags;/
 "
-" To close the error window when using :bdelete command
+"" To close the error window when using :bdelete command
 " ( For syntastic plugin )
 nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
 cabbrev <silent> bd lclose\|bdelete
 "
-" Theme
+"" Theme
 let g:molokai_original = 1
 let g:rehash256 = 1
 "
-" YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_goto_buffer_command='vertical-split'
-"
-" Settings for Vim-notes
+"" Settings for Vim-notes
 let g:notes_title_sync = 'rename_file'
 "
-" Settings for UltiSnips
+"" Settings for UltiSnips
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
+"
+"" Unite (inspired from terryma's dotfiles)
+let g:unite_kind_file_vertical_preview = 1
+" Use the fuzzy matcher for everything
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#sorter_default#use(['sorter_rank'])
+" Start in insert mode
+let g:unite_enable_start_insert = 1
+" Enable history yank source
+let g:unite_source_history_yank_enable = 1
+" Map space to the prefix for Unite
+nnoremap [unite] <Nop>
+nmap <space> [unite]
+" Quick file search
+nnoremap <silent> [unite]f :<C-u>Unite -buffer-name=files file_rec/async file/new<CR>
+" Quick grep from cwd
+nnoremap <silent> [unite]g :<C-u>Unite -buffer-name=grep grep:.<CR>
+" Quick yank history
+nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<CR>
+" Set up some custom ignores
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ 'git5/.*/review/',
+      \ 'tmp/',
+      \ 'node_modules/',
+      \ 'bower_components/',
+      \ 'dist/',
+      \ '.pyc',
+      \ ], '\|'))
+" Quick line
+nnoremap <silent> [unite]l :<C-u>Unite -buffer-name=search_file line<CR>
+" Quick commands
+nnoremap <silent> [unite]c :<C-u>Unite -buffer-name=commands command<CR>
+" Quick search buffers
+nnoremap <silent> [unite]b :<C-u>Unite -quick-match buffer<CR>
