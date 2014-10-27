@@ -1,5 +1,4 @@
 call pathogen#infect()
-:Helptags
 
 filetype on
 filetype plugin indent on
@@ -85,7 +84,7 @@ set pastetoggle=<F2>
 noremap j gj
 noremap k gk
 "
-" Allow saving of files as sudo when I forgot to start vim using sudo.
+" Allow saving of files as sudo when I forget to start vim using sudo.
 cmap w!! :w !sudo tee > /dev/null %
 "
 " Do not leave visual mode after visually shifting text
