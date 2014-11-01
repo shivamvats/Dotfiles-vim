@@ -124,6 +124,9 @@ augroup vimrcEx
 
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+
+  " Set spell for markdown files
+  autocmd BufRead,BufNewFile *.md setlocal spell
 augroup END
 "
 " Strip trailing whitespace (,ss)
@@ -148,7 +151,7 @@ endif
 "
 au VimResized * :wincmd =
 "
-au FocusLost * :wa
+au FocusLost * silent! wa
 "
 set wildchar=<Tab> wildmenu wildmode=full
 set complete=.,w,t
@@ -170,8 +173,7 @@ set wildignore+=*.orig "Merge resolution files"
 """ Plugin specific settings
 "
 "" YouCompleteMe
-" Set it to 0 if your tags are on a network directory
-let g:ycm_collect_identifiers_from_tags_files = 1
+" global configuration file for C like languages
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_filetype_blacklist = {
       \ 'notes' : 1,
@@ -195,6 +197,7 @@ let g:airline#extensions#tabline#enabled = 1
  if !exists('g:airline_symbols')
    let g:airline_symbols = {}
  endif
+" fix strange characters in status bar error
 let g:airline_symbols.space="\u3000"
 "
 set tags=./tags;/
@@ -203,6 +206,10 @@ set tags=./tags;/
 " ( For syntastic plugin )
 nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
 cabbrev <silent> bd lclose\|bdelete
+" force syntastic to use Python 3
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_ruby_checkers = ['rubocop']
 "
 "" Theme
 let g:molokai_original = 1
