@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/aries/gsoc/test_flint'
+let g:netrw_dirhist_2='/home/aries/gsoc/flint2/fmpq_poly_mat'
+let g:netrw_dirhist_3='/home/aries/foss/sympy/sympy/polys'
+let g:netrw_dirhist_4='/home/aries/foss/sanbox'
+let g:netrw_dirhist_5='/home/aries/foss/sympy'
+let g:netrw_dirhist_6='/home/aries/foss/sympy/sympy'
+let g:netrw_dirhist_7='/home/aries/foss'
