@@ -41,7 +41,8 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this linecall pathogen#infect()
+" Put your non-Plugin stuff after this line
+call pathogen#infect()
 
 filetype off
 filetype plugin indent on
@@ -50,7 +51,7 @@ filetype plugin on
 set encoding=utf-8
 "
 " Display extra whitespace
-"set fillchars+=stl:\ ,stlnc: 
+"set fillchars+=stl:\ ,stlnc:
 set list listchars=tab:▸\ ,trail:·,eol:¬
 set mps+=<:>
 "
@@ -242,7 +243,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+    let g:airline_symbols = {}
  endif
 " fix strange characters in status bar error
 let g:airline_symbols.space="\u3000"
