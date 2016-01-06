@@ -4,8 +4,8 @@
 
 " Global Mappings "{{{
 " Use spacebar instead of '\' as leader. Require before loading plugins.
-let g:mapleader="\<Space>"
-let g:maplocalleader=','
+let g:maplocalleader="\<Space>"
+let g:mapleader=','
 
 " Release keymappings for plug-in.
 nnoremap <Space>  <Nop>

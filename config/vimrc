@@ -62,6 +62,9 @@ call s:source_file('tabline.vim')
 if has('nvim')
 	call s:source_file('neovim.vim')
 endif
+
+" source custom mappings file
+call s:source_file('custom.vim')
 " }}}
 
 call neobundle#call_hook('on_source')

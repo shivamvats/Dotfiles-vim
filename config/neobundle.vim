@@ -10,7 +10,6 @@ NeoBundle 'itchyny/vim-gitbranch'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'rafi/vim-tinyline'
 NeoBundle 'rafi/vim-tagabana'
 NeoBundle 'Shougo/neomru.vim'
@@ -37,7 +36,6 @@ NeoBundleLazy 'hail2u/vim-css3-syntax', {'on_ft': 'css'}
 NeoBundleLazy 'chrisbra/csv.vim', {'on_ft': 'csv'}
 NeoBundleLazy 'hynek/vim-python-pep8-indent', {'on_ft': 'python'}
 NeoBundleLazy 'robbles/logstash.vim', {'on_ft': 'logstash'}
-NeoBundleLazy 'tmux-plugins/vim-tmux', {'on_ft': 'tmux'}
 NeoBundleLazy 'elzr/vim-json', {'on_ft': 'json'}
 NeoBundleLazy 'cespare/vim-toml', {'on_ft': 'toml'}
 NeoBundleLazy 'PotatoesMaster/i3-vim-syntax', {'on_ft': 'i3'}
@@ -46,12 +44,6 @@ NeoBundleLazy 'jstrater/mpvim', {'on_ft': 'portfile'}
 NeoBundleLazy 'vim-ruby/vim-ruby', {'on_ft': 'ruby', 'on_map': '<Plug>'}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'on_ft': 'javascript'}
 NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {'on_ft': 'javascript'}
-NeoBundleLazy 'StanAngeloff/php.vim', {'on_ft': 'php'}
-NeoBundleLazy 'rayburgemeestre/phpfolding.vim', {'on_ft': 'php'}
-NeoBundleLazy 'rafi/vim-phpspec', {
-	\ 'on_ft': 'php',
-	\ 'on_cmd': ['PhpSpecRun', 'PhpSpecRunCurrent']
-	\ }
 NeoBundleLazy 'fatih/vim-go', {
 	\ 'on_ft': 'go',
 	\ 'on_cmd': ['GoInstallBinaries', 'GoUpdateBinaries']
@@ -148,7 +140,6 @@ NeoBundleLazy 'Shougo/neoinclude.vim', {'on_ft': 'all'}
 if $VIM_MINIMAL ==? ''
 	NeoBundleLazy 'benekastah/neomake', {'on_cmd': ['Neomake']}
 	NeoBundleLazy 'davidhalter/jedi-vim', {'on_ft': 'python'}
-	NeoBundleLazy 'shawncplus/phpcomplete.vim', {'on_i': 1, 'on_ft': 'php'}
 	NeoBundleLazy 'ternjs/tern_for_vim', {
 		\ 'build': {'others': 'npm install'},
 		\ 'disabled': ! executable('npm'),
