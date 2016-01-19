@@ -20,6 +20,7 @@ syntax sync minlines=256     " Update syntax highlighting for more lines
 set ttyfast                  " Indicate a fast terminal connection
 set formatoptions+=1         " Don't break lines after a one-letter word
 set formatoptions-=t         " Don't auto-wrap text
+set guicursor+=n-v-c:blinkon0 " Don't blink cursor in n,v,c mode
 
 if has('vim_starting')
 	set encoding=utf-8
@@ -178,7 +179,7 @@ set scrolloff=2         " Keep at least 2 lines above/below
 set sidescrolloff=2     " Keep at least 2 lines left/right
 set pumheight=20        " Pop-up menu's line height
 set number              " Show line numbers
-set relativenumber      " Use relative instead of absolute line numbers
+" set relativenumber      " Use relative instead of absolute line numbers
 set noruler             " Disable default status ruler
 set list                " Show hidden characters
 

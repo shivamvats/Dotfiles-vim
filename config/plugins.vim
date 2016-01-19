@@ -362,7 +362,7 @@ endif
 "}}}
 if neobundle#tap('jedi-vim') "{{{
 	setlocal completeopt=menuone,longest
-	let g:jedi#force_py_version = 3
+	let g:jedi#force_py_version = 'auto'
 	let g:jedi#completions_enabled = 0
 	let g:jedi#auto_vim_configuration = 0
 	let g:jedi#smart_auto_mappings = 0

@@ -5,6 +5,7 @@
 " Always loaded {{{
 " -------------
 NeoBundle 'Shougo/vimproc.vim', {'build' : 'make'}
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'itchyny/vim-cursorword'
 NeoBundle 'itchyny/vim-gitbranch'
 NeoBundle 'airblade/vim-gitgutter'
@@ -14,7 +15,9 @@ NeoBundle 'rafi/vim-tinyline'
 NeoBundle 'rafi/vim-tagabana'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'bogado/file-line'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'thinca/vim-localrc'
+NeoBundle 'godlygeek/tabular'
 
 " LAZY LOADING from here on!
 " --------------------------------------------------------
@@ -28,13 +31,14 @@ NeoBundleFetch 'rafi/awesome-vim-colorschemes'
 " --------
 NeoBundleLazy 'othree/html5.vim', {'on_ft': 'html'}
 NeoBundleLazy 'mustache/vim-mustache-handlebars', {'on_ft': 'html'}
-NeoBundleLazy 'rcmdnk/vim-markdown', {'on_ft': 'markdown'}
+NeoBundleLazy 'plasticboy/vim-markdown', {'on_ft': 'markdown'}
 NeoBundleLazy 'chase/vim-ansible-yaml', {'on_ft': ['yaml', 'ansible']}
 NeoBundleLazy 'mitsuhiko/vim-jinja', {'on_ft': ['htmljinja', 'jinja']}
 NeoBundleLazy 'groenewege/vim-less', {'on_ft': 'less'}
 NeoBundleLazy 'hail2u/vim-css3-syntax', {'on_ft': 'css'}
 NeoBundleLazy 'chrisbra/csv.vim', {'on_ft': 'csv'}
 NeoBundleLazy 'hynek/vim-python-pep8-indent', {'on_ft': 'python'}
+NeoBundleLazy 'fs111/pydoc.vim', {'on_ft': 'python'}
 NeoBundleLazy 'robbles/logstash.vim', {'on_ft': 'logstash'}
 NeoBundleLazy 'elzr/vim-json', {'on_ft': 'json'}
 NeoBundleLazy 'cespare/vim-toml', {'on_ft': 'toml'}
@@ -42,6 +46,7 @@ NeoBundleLazy 'PotatoesMaster/i3-vim-syntax', {'on_ft': 'i3'}
 NeoBundleLazy 'ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'}
 NeoBundleLazy 'jstrater/mpvim', {'on_ft': 'portfile'}
 NeoBundleLazy 'vim-ruby/vim-ruby', {'on_ft': 'ruby', 'on_map': '<Plug>'}
+NeoBundleLazy 'tpope/vim-endwise', {'on_ft': 'ruby'}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'on_ft': 'javascript'}
 NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {'on_ft': 'javascript'}
 NeoBundleLazy 'fatih/vim-go', {
