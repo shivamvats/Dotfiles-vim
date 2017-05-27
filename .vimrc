@@ -12,6 +12,8 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tomtom/quickfixsigns_vim'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/taglist.vim'
 "Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-repeat'
 Plug 'godlygeek/tabular'
@@ -110,6 +112,7 @@ call plug#end()
     set tags=./tags;/
     set mps+=<:>
     set backspace=2
+    set ignorecase
     set smartcase
     set autoread
     set showmatch
@@ -141,6 +144,8 @@ call plug#end()
     set splitright
     set splitbelow
     set wrap
+    set formatoptions+=t
+    set tw=79
 
     augroup vimrcEx
         autocmd!
@@ -240,7 +245,7 @@ call plug#end()
         set guioptions-=L
         set guioptions-=m
         set guioptions+=a
-        set guifont=Source\ Code\ Pro\ Medium\ 10
+        set guifont=Droid\ Sans\ Mono\ 11
         set lines=40
     endif
 
@@ -282,6 +287,14 @@ call plug#end()
         let g:syntastic_python_checkers = ['flake8']
         let g:syntastic_javascript_checkers = ['jshint']
         let g:syntastic_ruby_checkers = ['rubocop']
+
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+
+        let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
+        let g:syntastic_cpp_compiler = "clang++"
+
     endif
     " }
 
@@ -364,6 +377,7 @@ call plug#end()
         let g:ycm_autoclose_preview_window_after_completion=1
         let g:ycm_confirm_extra_conf = 0
         let g:ycm_goto_buffer_command='vertical-split'
+        "let g:ycm_show_diagnostics_ui = 0
         " let g:ycm_cache_omnifunc = 1
     endif
     " }
@@ -422,3 +436,6 @@ call plug#end()
     autocmd User GoyoLeave nested call <SID>goyo_leave()
     " }
 " }
+set spell
+autocmd BufEnter * silent! lcd %:p:h
+set formatprg=par
