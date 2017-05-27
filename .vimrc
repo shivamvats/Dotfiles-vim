@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
-Plug 'bling/vim-airline'
+"Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'docunext/closetag.vim'
@@ -64,16 +64,16 @@ call plug#end()
     endif
 
     color smyck
-    "if filereadable(expand("~/.vim/plugged/vim-colors-solarized/colors/solarized.vim"))
-        "let g:solarized_termcolors=256
-        "let g:solarized_contrast="normal"
-        "let g:solarized_visibility="normal"
-        "color solarized
-        "set bg=light
+    if filereadable(expand("~/.vim/plugged/vim-colors-solarized/colors/solarized.vim"))
+        let g:solarized_termcolors=256
+        let g:solarized_contrast="normal"
+        let g:solarized_visibility="normal"
+        color solarized
+        set bg=dark
     "else
         "color espresso-soda
         "set bg=light
-    "endif
+    endif
 
     if has('cmdline_info')
         set ruler                   " Show the ruler
@@ -272,6 +272,7 @@ call plug#end()
     " vim-airline {
     if isdirectory(expand("~/.vim/plugged/vim-airline"))
         let g:airline#extensions#tabline#enabled = 1
+        let g:airline_theme = 'solaized'
         " let g:airline_powerline_fonts=1
     endif
     " }
