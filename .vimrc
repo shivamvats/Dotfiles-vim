@@ -12,8 +12,8 @@ Plugin 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
+Plugin 'easymotion/vim-easymotion'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'minibufexpl'
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -69,6 +69,7 @@ set tw=79
 set formatoptions+=t
 "
 set showmatch
+set ignorecase
 set smartcase
 set smarttab
 set showcmd
@@ -221,8 +222,8 @@ set wildignore+=*.orig "Merge resolution files"
 """ Plugin specific settings
 "
 "" YouCompleteMe
-" global configuration file for C like languages
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" global configuration file for C like language
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_filetype_blacklist = {
       \ 'notes' : 1,
       \ 'markdown' : 1,
@@ -232,7 +233,11 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_goto_buffer_command='vertical-split'
+""Pylint disabled
+let g:pylint_onwrite = 0
 "
+"" easy-motion
+let g:EasyMotion_do_mappings = 1
 "" nerdTree
 nnoremap <F9> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.vim$', '\~$', '\.pyc$']
@@ -259,6 +264,17 @@ let g:syntastic_python_python_exec = '/usr/bin/python3'
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_ruby_checkers = ['rubocop']
 "
+map <Leader>s :SyntasticToggleMode<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
 "" Theme
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -309,3 +325,12 @@ nnoremap <silent> [unite]c :<C-u>Unite -buffer-name=commands command<CR>
 " Quick search buffers
 nnoremap <silent> [unite]b :<C-u>Unite -quick-match buffer<CR>
 
+nmap pn o<ESC>p
+inoremap <Leader>a <ESC>
+map <Leader>a <ESC>
+inoremap <A> <C>
+
+set spell
+
+" Autochange to current file directory.
+autocmd BufEnter * silent! lcd %:p:h
