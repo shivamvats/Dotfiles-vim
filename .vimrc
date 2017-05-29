@@ -12,6 +12,10 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tomtom/quickfixsigns_vim'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
 "Plug 'AndrewRadev/splitjoin.vim'
@@ -70,9 +74,9 @@ call plug#end()
         let g:solarized_visibility="normal"
         color solarized
         set bg=dark
-    "else
-        "color espresso-soda
-        "set bg=light
+    else
+        color espresso-soda
+        set bg=light
     endif
 
     if has('cmdline_info')
@@ -272,7 +276,7 @@ call plug#end()
     " vim-airline {
     if isdirectory(expand("~/.vim/plugged/vim-airline"))
         let g:airline#extensions#tabline#enabled = 1
-        let g:airline_theme = 'solaized'
+        let g:airline_theme = 'molokai'
         " let g:airline_powerline_fonts=1
     endif
     " }
@@ -437,6 +441,25 @@ call plug#end()
     autocmd User GoyoLeave nested call <SID>goyo_leave()
     " }
 " }
+
+" molokai
+"let g:molokai_original = 1
+
+" Ultisnips
+let g:UltiSnipsEditSplit="horizontal"
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+ 
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetsDir="~/.vim/snips"
+let g:UltiSnipsSnippetDirectories=["snips", "ultisnips"]
+
 set spell
 autocmd BufEnter * silent! lcd %:p:h
 set formatprg=par
