@@ -45,6 +45,7 @@ Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 Plug 'itspriddle/vim-jquery', {'for': ['javascript']}
 Plug 'bitc/vim-hdevtools', {'for': 'haskell'}
 Plug 'fs111/pydoc.vim', {'for': 'python'}
+Plug 'rhysd/vim-clang-format'
 
 call plug#end()
 
@@ -463,3 +464,9 @@ let g:UltiSnipsSnippetDirectories=["snips", "ultisnips"]
 set spell
 autocmd BufEnter * silent! lcd %:p:h
 set formatprg=par
+
+" for using clang-format.
+let g:clang_format_fallback_style="/home/aries/vim/.clang-format"
+let g:clang_format_path="/home/aries/bin/clang-format"
+map <C-I> :py3f ~/.vim/clang-format.py<CR>
+imap <C-I> <ESC>:py3f ~/.vim/clang-format.py<CR>i
