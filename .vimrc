@@ -129,6 +129,7 @@ call plug#end()
     " set t_RV=
     set title
     set cursorline
+    set cursorcolumn
     set viminfo='20,\"500
     set hidden
     set history=100
@@ -442,6 +443,12 @@ call plug#end()
     autocmd User GoyoLeave nested call <SID>goyo_leave()
     " }
 " }
+" Change cursor shape in insert mode in vim.
+if has("autocmd")
+  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  "au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+endif
 
 " molokai
 "let g:molokai_original = 1
@@ -466,7 +473,30 @@ autocmd BufEnter * silent! lcd %:p:h
 set formatprg=par
 
 " for using clang-format.
-let g:clang_format_fallback_style="/home/aries/vim/.clang-format"
-let g:clang_format_path="/home/aries/bin/clang-format"
-map <C-I> :py3f ~/.vim/clang-format.py<CR>
-imap <C-I> <ESC>:py3f ~/.vim/clang-format.py<CR>i
+"let g:clang_format_fallback_style="llvm"
+"let g:clang_format_path="/home/aries/bin/clang-format"
+"map <C-I> :py3f ~/.vim/clang-format.py<CR>
+"imap <C-I> <ESC>:py3f ~/.vim/clang-format.py<CR>i
+"
+"function FormatFile()
+"    let l:lines="all"
+"    py3f ~/.vim/clang-format.py
+"endfunction
+"nmap <C-I>a :call FormatFile()<CR>
+
+let g:clang_format#code_style = "llvm"
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "IndentWidth" : 4 }
+"let g:clang_format#auto_format_on_insert_leave = 1
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
