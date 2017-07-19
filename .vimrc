@@ -34,6 +34,7 @@ Plug 'Yggdroot/indentLine', {'on': 'IndentLinesToggle'}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'xolox/vim-notes', {'on': 'Notes'}
 Plug 'chrisbra/NrrwRgn', {'on': 'NrrwRgn'}
 Plug 'mtth/scratch.vim', {'on': 'Scratch'}
@@ -378,7 +379,7 @@ call plug#end()
     " YouCompleteMe {
     if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
         " global configuration file for C like languages
-        let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+        let g:ycm_global_ycm_extra_conf = 'home/aries/.ycm_extra_conf.py'
         let g:ycm_filetype_blacklist = {'notes' : 1, 'markdown' : 1, 'text' : 1, 'unite' : 1}
         let g:ycm_error_symbol = '>'
         let g:ycm_autoclose_preview_window_after_completion=1
@@ -483,7 +484,9 @@ set formatprg=par
 "    py3f ~/.vim/clang-format.py
 "endfunction
 "nmap <C-I>a :call FormatFile()<CR>
-
+if !executable('clang-format') && executable('clang-format-3.8')
+  let g:clang_format#command = 'clang-format-3.8'
+endif
 let g:clang_format#code_style = "llvm"
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
@@ -509,3 +512,9 @@ endif
 " Ctags
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" NerdTreeTabs
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+" Ctrlp
+let g:ctrlp_root_markers=['.ctrlp']
