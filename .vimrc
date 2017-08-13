@@ -1,6 +1,9 @@
 call plug#begin('~/.vim/plugged')
 "
 " always enabled
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
@@ -12,6 +15,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tomtom/quickfixsigns_vim'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 "Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-repeat'
 Plug 'godlygeek/tabular'
@@ -39,6 +43,11 @@ Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 Plug 'itspriddle/vim-jquery', {'for': ['javascript']}
 Plug 'bitc/vim-hdevtools', {'for': 'haskell'}
 Plug 'fs111/pydoc.vim', {'for': 'python'}
+
+" Added by Shivam for syntax highlight
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'slim-template/vim-slim'
 
 call plug#end()
 
@@ -140,7 +149,8 @@ call plug#end()
     set shiftround
     set splitright
     set splitbelow
-    set wrap
+    set ignorecase
+    set tw=80
 
     augroup vimrcEx
         autocmd!
@@ -240,7 +250,7 @@ call plug#end()
         set guioptions-=L
         set guioptions-=m
         set guioptions+=a
-        set guifont=Source\ Code\ Pro\ Medium\ 10
+        set guifont=Ubuntu\ mono\ 13
         set lines=40
     endif
 
@@ -358,7 +368,7 @@ call plug#end()
     " YouCompleteMe {
     if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
         " global configuration file for C like languages
-        let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+        let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
         let g:ycm_filetype_blacklist = {'notes' : 1, 'markdown' : 1, 'text' : 1, 'unite' : 1}
         let g:ycm_error_symbol = '>'
         let g:ycm_autoclose_preview_window_after_completion=1
@@ -422,3 +432,33 @@ call plug#end()
     autocmd User GoyoLeave nested call <SID>goyo_leave()
     " }
 " }
+
+" Added by Shivam for ctags
+" Ctrl+\ - Open the definition in a new tab
+" Alt+] - Open the definition in a vertical spli
+
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Added by Shivam for ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" Added by Shivam for spell checker
+:set spell spelllang=en_gb
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=undercurl cterm=undercurl gui=undercurl
+highlight clear SpellCap
+highlight SpellCap term=undercurl cterm=undercurl gui=undercurl
+highlight clear SpellRare
+highlight SpellRare term=undercurl cterm=undercurl gui=undercurl
+highlight clear SpellLocal
+highlight SpellLocal term=undercurl cterm=undercurl gui=undercurl
+
+" Added by Shivam for wrapping
+:set linebreak
+:set nolist
+:set formatoptions-=l
