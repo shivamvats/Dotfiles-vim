@@ -29,12 +29,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/MatchTagAlways'
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-expand-region'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+
 " on-demand loading
-Plug 'Yggdroot/indentLine', {'on': 'IndentLinesToggle'}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}
-Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'xolox/vim-notes', {'on': 'Notes'}
 Plug 'chrisbra/NrrwRgn', {'on': 'NrrwRgn'}
 Plug 'mtth/scratch.vim', {'on': 'Scratch'}
@@ -153,6 +154,7 @@ call plug#end()
     set wrap
     set formatoptions+=t
     set tw=79
+    syntax on
 
     augroup vimrcEx
         autocmd!
@@ -379,7 +381,7 @@ call plug#end()
     " YouCompleteMe {
     if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
         " global configuration file for C like languages
-        let g:ycm_global_ycm_extra_conf = 'home/aries/.ycm_extra_conf.py'
+        let g:ycm_global_ycm_extra_conf = '/home/aries/.ycm_extra_conf_ros.py'
         let g:ycm_filetype_blacklist = {'notes' : 1, 'markdown' : 1, 'text' : 1, 'unite' : 1}
         let g:ycm_error_symbol = '>'
         let g:ycm_autoclose_preview_window_after_completion=1
@@ -416,6 +418,7 @@ call plug#end()
     let g:indentLine_maxLines = 500
     let g:indent_guides_start_level = 2
     let g:indent_guides_guide_size = 1
+    let g:indentLine_enabled = 1
         nmap <leader>il :IndentLinesToggle<CR>
     " }
     "
