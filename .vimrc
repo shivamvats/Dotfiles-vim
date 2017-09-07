@@ -30,8 +30,8 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-expand-region'
 Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'lervag/vimtex'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -40,6 +40,7 @@ Plug 'xolox/vim-notes', {'on': 'Notes'}
 Plug 'chrisbra/NrrwRgn', {'on': 'NrrwRgn'}
 Plug 'mtth/scratch.vim', {'on': 'Scratch'}
 Plug 'mattn/gist-vim', {'on': 'Gist'}
+Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 " filetype specific plugins
 Plug 'othree/html5.vim', {'for': ['html']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
