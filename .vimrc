@@ -255,7 +255,7 @@ call plug#end()
         set guioptions-=L
         set guioptions-=m
         set guioptions+=a
-        set guifont=Droid\ Sans\ Mono\ 11
+        set guifont=Monospace\ 13
         set lines=40
     endif
 
