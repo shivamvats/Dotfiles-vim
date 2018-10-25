@@ -4,7 +4,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
-"Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'docunext/closetag.vim'
@@ -15,6 +16,10 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+Plug 'Rykka/riv.vim'
+Plug 'Rykka/InstantRst'
+Plug 'vimwiki/vimwiki'
+Plug 'vim-pandoc/vim-pandoc'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
@@ -202,6 +207,7 @@ call plug#end()
 " Key (re)mapping {
     "
     let mapleader=','
+    let maplocalleader=",,"
     set pastetoggle=<F2>
 
     " Windows like movements for long lines with wrap enabled:
@@ -255,7 +261,7 @@ call plug#end()
         set guioptions-=L
         set guioptions-=m
         set guioptions+=a
-        set guifont=Monospace\ 13
+        set guifont=Droid\ Sans\ Mono\ 11
         set lines=40
     endif
 
@@ -282,8 +288,10 @@ call plug#end()
     " vim-airline {
     if isdirectory(expand("~/.vim/plugged/vim-airline"))
         let g:airline#extensions#tabline#enabled = 1
-        let g:airline_theme = 'molokai'
+        let g:airline_theme = 'solarized'
         " let g:airline_powerline_fonts=1
+        let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+        let g:airline_section_z = '%t'
     endif
     " }
 
@@ -420,7 +428,9 @@ call plug#end()
     let g:indent_guides_start_level = 2
     let g:indent_guides_guide_size = 1
     let g:indentLine_enabled = 1
-        nmap <leader>il :IndentLinesToggle<CR>
+    let g:indentLine_conceallevel = 0
+    let g:indentLine_setConceal = 0
+    nmap <leader>il :IndentLinesToggle<CR>
     " }
     "
     " Goyo {
@@ -522,3 +532,40 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 " Ctrlp
 let g:ctrlp_root_markers=['.ctrlp']
+
+" Vimtex
+let g:vimtex_compiler_latexmk = {
+        \ 'build_dir' : 'build',
+        \ 'continuous' : 1
+        \}
+let g:vimtex_quickfix_autojump=0
+let g:vimtex_quickfix_mode=2
+let g:vimtex_quickfix_open_on_warning=0
+let g:vimtex_quickfix_open_on_error=0
+
+" InstantRst
+let g:instant_rst_browser='google-chrome'
+
+" Riv
+let project1 = { 'Research': 'My Working Notes', 'path': '~/Dropbox/projects/rst',}
+let g:riv_projects = [project1]
+
+" Vimwiki
+let g:vimwiki_list = [{
+  \ 'path': '$HOME/vimwiki',
+  \ 'template_path': '$HOME/vimwiki/templates',
+  \ 'template_default': 'default',
+  \ 'template_ext': '.html'}]
+
+" Switch between cases by pressing ~.
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
