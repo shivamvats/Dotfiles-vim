@@ -15,6 +15,7 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+Plug 'vimwiki/vimwiki'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
@@ -522,3 +523,12 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 " Ctrlp
 let g:ctrlp_root_markers=['.ctrlp']
+
+" Vimwiki
+let g:vimwiki_list = [{
+  \ 'path': '$HOME/vimwiki',
+  \ 'template_path': '$HOME/vimwiki/templates',
+  \ 'template_default': 'default',
+  \ 'template_ext': '.html'}]
+
+nmap <Leader>wah :VimwikiAll2HTML<CR>
