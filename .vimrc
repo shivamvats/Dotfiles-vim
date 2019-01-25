@@ -314,6 +314,18 @@ call plug#end()
         let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
         let g:syntastic_cpp_compiler = "clang++"
 
+        " Function to run/close check.
+        function! ToggleSyntastic()
+            for i in range(1, winnr('$'))
+                let bnum = winbufnr(i)
+                if getbufvar(bnum, '&buftype') == 'quickfix'
+                    lclose
+                    return
+                endif
+            endfor
+            SyntasticCheck
+        endfunction
+
     endif
     " }
 
@@ -545,6 +557,7 @@ let g:vimtex_quickfix_open_on_error=0
 
 " InstantRst
 let g:instant_rst_browser='google-chrome'
+let g:instant_rst_forever=1
 
 " Riv
 let project1 = { 'Research': 'My Working Notes', 'path': '~/Dropbox/projects/rst',}
@@ -571,3 +584,25 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
+" netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+
+" projectionist
+let g:projectionist_heuristics = {
+\ '*.cpp':{
+\    'alternate': '{}.h',
+\    'type': 'source'
+\    },
+\    '*.h': {
+\    'alternate': '{}.cpp',
+\    'type': 'header'
+\    },
+\}
+
+" Syntastic
+nnoremap <F8> :call ToggleSyntastic()<CR>
