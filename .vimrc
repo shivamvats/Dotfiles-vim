@@ -34,7 +34,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/MatchTagAlways'
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-expand-region'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'lervag/vimtex'
 
@@ -261,7 +261,8 @@ call plug#end()
         set guioptions-=L
         set guioptions-=m
         set guioptions+=a
-        set guifont=Droid\ Sans\ Mono\ 11
+        "set guifont=Droid\ Sans\ Mono\ 15
+        set guifont=DejaVu\ Sans\ Mono\ 10
         set lines=40
     endif
 
@@ -542,12 +543,13 @@ let g:vimtex_quickfix_autojump=0
 let g:vimtex_quickfix_mode=2
 let g:vimtex_quickfix_open_on_warning=0
 let g:vimtex_quickfix_open_on_error=0
+let g:vimtex_compiler_progname='nvr'
 
 " InstantRst
 let g:instant_rst_browser='google-chrome'
 
 " Riv
-let project1 = { 'Research': 'My Working Notes', 'path': '~/Dropbox/projects/rst',}
+let project1 = { 'Research': 'My Working Notes', 'path': '~/Dropbox/writings/rst',}
 let g:riv_projects = [project1]
 
 " Vimwiki
@@ -569,3 +571,6 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
+" Disable highlight on pressing ESC
+nnoremap <esc> :noh<return><esc>
