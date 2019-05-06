@@ -292,7 +292,8 @@ call plug#end()
         let g:airline_theme = 'solarized'
         " let g:airline_powerline_fonts=1
         let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-        let g:airline_section_z = '%t'
+        let g:airline_section_z = airline#section#create(['%3p%%  ',
+            \ g:airline_symbols.linenr .' ', 'linenr', ':%c '])
     endif
     " }
 
@@ -391,7 +392,7 @@ call plug#end()
     " YouCompleteMe {
     if isdirectory(expand("~/.vim/plugged/YouCompleteMe"))
         " global configuration file for C like languages
-        let g:ycm_global_ycm_extra_conf = '/home/aries/.ycm_extra_conf_ros.py'
+        let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf_ros.py'
         let g:ycm_filetype_blacklist = {'notes' : 1, 'markdown' : 1, 'text' : 1, 'unite' : 1}
         let g:ycm_error_symbol = '>'
         let g:ycm_autoclose_preview_window_after_completion=1
@@ -469,18 +470,16 @@ endif
 " molokai
 "let g:molokai_original = 1
 
-" Ultisnips
-let g:UltiSnipsEditSplit="horizontal"
-
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
  
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsSnippetsDir="~/.vim/snips"
 let g:UltiSnipsSnippetDirectories=["snips", "ultisnips"]
 
