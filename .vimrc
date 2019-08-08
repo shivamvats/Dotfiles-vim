@@ -94,19 +94,20 @@ call plug#end()
         " Selected characters/lines in visual mode
     endif
 
-    if has('statusline')
-        set laststatus=2
+    "Using airline
+    "if has('statusline')
+    "    set laststatus=2
 
-        " Broken down into easily includeable segments
-        set statusline=%<%f\                     " Filename
-        set statusline+=%w%h%m%r                 " Options
-        if isdirectory(expand("~/.vim/plugged/vim-fugitive"))
-            set statusline+=%{fugitive#statusline()} " Git Hotness
-        endif
-        set statusline+=\ [%{&ff}/%Y]            " Filetype
-        set statusline+=\ [%{getcwd()}]          " Current dir
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-    endif
+    "    " Broken down into easily includeable segments
+    "    set statusline=%<%f\                     " Filename
+    "    set statusline+=%w%h%m%r                 " Options
+    "    if isdirectory(expand("~/.vim/plugged/vim-fugitive"))
+    "        set statusline+=%{fugitive#statusline()} " Git Hotness
+    "    endif
+    "    set statusline+=\ [%{&ff}/%Y]            " Filetype
+    "    set statusline+=\ [%{getcwd()}]          " Current dir
+    "    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+    "endif
 
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -261,7 +262,7 @@ call plug#end()
         set guioptions-=L
         set guioptions-=m
         set guioptions+=a
-        set guifont=Droid\ Sans\ Mono\ 11
+        set guifont=Monospace\ 13
         set lines=40
     endif
 
@@ -286,15 +287,17 @@ call plug#end()
     " }
 
     " vim-airline {
+    " statusline
     if isdirectory(expand("~/.vim/plugged/vim-airline"))
         let g:airline#extensions#tabline#enabled = 1
         let g:airline_theme = 'solarized'
         " let g:airline_powerline_fonts=1
         let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-        let g:airline_section_z = '%t'
+        let g:airline_section_a=''
+        let g:airline_section_z = ''
+        let g:airline_section_y = '%c | %l/%L | %P'
     endif
     " }
-
 
     " syntastic {
     if isdirectory(expand("~/.vim/plugged/syntastic"))
@@ -307,9 +310,9 @@ call plug#end()
         let g:syntastic_javascript_checkers = ['jshint']
         let g:syntastic_ruby_checkers = ['rubocop']
 
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
+        "set statusline+=%#warningmsg#
+        "set statusline+=%{SyntasticStatuslineFlag()}
+        "set statusline+=%*
 
         let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
         let g:syntastic_cpp_compiler = "clang++"
@@ -383,19 +386,6 @@ call plug#end()
     " gundo {
     if isdirectory(expand("~/.vim/plugged/gundo.vim"))
         nnoremap <F5> :GundoToggle<CR>
-    endif
-    " }
-
-    " vim-airline {
-    if isdirectory(expand("~/.vim/plugged/vim-airline"))
-        if !exists('g:airline_theme')
-        "let g:airline_theme = 'solarized'
-        endif
-        if !exists('g:airline_powerline_fonts')
-        " Use the default set of separators with a few customizations
-        let g:airline_left_sep=' '  " Slightly fancier than '>'
-        let g:airline_right_sep=' ' " Slightly fancier than '<'
-        endif
     endif
     " }
 
@@ -588,7 +578,7 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 " netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 0
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
@@ -606,3 +596,6 @@ let g:projectionist_heuristics = {
 
 " Syntastic
 nnoremap <F8> :call ToggleSyntastic()<CR>
+
+" Disable highlitght on pressing ESC
+nnoremap <esc> :noh<return><esc>
