@@ -314,17 +314,17 @@ call plug#end()
         let g:syntastic_javascript_checkers = ['jshint']
         let g:syntastic_ruby_checkers = ['rubocop']
 
-        "set statusline+=%#warningmsg#
-        "set statusline+=%{SyntasticStatuslineFlag()}
-        "set statusline+=%*
-        "let g:syntastic_always_populate_loc_list = 1
-        "let g:syntastic_auto_loc_list = 1
-        "let g:syntastic_check_on_open = 0
-        "let g:syntastic_check_on_wq = 0
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+        let g:syntastic_always_populate_loc_list = 0
+        let g:syntastic_auto_loc_list = 0
+        let g:syntastic_check_on_open = 0
+        let g:syntastic_check_on_wq = 0
 
-        "let g:syntastic_cpp_compiler_options = "-std=c++17 -l~/ros/catkin_ws/build -Wall -Wextra -Wpedantic"
-        "let g:syntastic_cpp_compiler = "g++"
-        "let g:syntastic_cppcheck_config_file = ""
+        let g:syntastic_cpp_compiler_options = "-std=c++17 -l~/ros/catkin_ws/build -Wall -Wextra -Wpedantic"
+        let g:syntastic_cpp_compiler = "g++"
+        let g:syntastic_cppcheck_config_file = ""
 
         " Function to run/close check.
         function! ToggleSyntastic()
@@ -407,7 +407,7 @@ call plug#end()
         let g:ycm_autoclose_preview_window_after_completion=1
         let g:ycm_confirm_extra_conf = 0
         let g:ycm_goto_buffer_command='vertical-split'
-        let g:ycm_show_diagnostics_ui = 0
+        let g:ycm_show_diagnostics_ui = 1
         " let g:ycm_cache_omnifunc = 1
     endif
     " }
