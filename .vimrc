@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
+Plug 'myint/syntastic-extras'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
@@ -20,6 +21,8 @@ Plug 'Rykka/riv.vim'
 Plug 'Rykka/InstantRst'
 Plug 'vimwiki/vimwiki'
 Plug 'vim-pandoc/vim-pandoc'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'dense-analysis/ale'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
@@ -162,6 +165,7 @@ call plug#end()
     set formatoptions+=t
     set tw=79
     syntax on
+    set foldmethod=syntax
 
     augroup vimrcEx
         autocmd!
@@ -262,7 +266,7 @@ call plug#end()
         set guioptions-=L
         set guioptions-=m
         set guioptions+=a
-        set guifont=Monospace\ 13
+        set guifont=Monospace\ 11
         set lines=40
     endif
 
@@ -313,9 +317,14 @@ call plug#end()
         "set statusline+=%#warningmsg#
         "set statusline+=%{SyntasticStatuslineFlag()}
         "set statusline+=%*
+        "let g:syntastic_always_populate_loc_list = 1
+        "let g:syntastic_auto_loc_list = 1
+        "let g:syntastic_check_on_open = 0
+        "let g:syntastic_check_on_wq = 0
 
-        let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
-        let g:syntastic_cpp_compiler = "clang++"
+        "let g:syntastic_cpp_compiler_options = "-std=c++17 -l~/ros/catkin_ws/build -Wall -Wextra -Wpedantic"
+        "let g:syntastic_cpp_compiler = "g++"
+        "let g:syntastic_cppcheck_config_file = ""
 
         " Function to run/close check.
         function! ToggleSyntastic()
@@ -398,7 +407,7 @@ call plug#end()
         let g:ycm_autoclose_preview_window_after_completion=1
         let g:ycm_confirm_extra_conf = 0
         let g:ycm_goto_buffer_command='vertical-split'
-        "let g:ycm_show_diagnostics_ui = 0
+        let g:ycm_show_diagnostics_ui = 0
         " let g:ycm_cache_omnifunc = 1
     endif
     " }
@@ -599,3 +608,6 @@ nnoremap <F8> :call ToggleSyntastic()<CR>
 
 " Disable highlitght on pressing ESC
 nnoremap <esc> :noh<return><esc>
+
+" Browse old files
+nnoremap :bro :browse oldfiles 
