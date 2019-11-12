@@ -1,10 +1,80 @@
-snippet classdef
-class $1 {
-	$1 ($2);
-	$0
+snippet class
+class $1
+{
+    public:
+    $1($2);
+    ~$1();
+
+    private:
 };
 endsnippet
 
-snippet classdef
+snippet include_global
 #include <$1>
+endsnippet
+
+snippet include_local
+#include "$1"
+endsnippet
+
+snippet ifndef
+#ifndef $1_H
+#define $1_H
+
+$0
+
+#endif
+endsnippet
+
+snippet ifndef_class_header
+#ifndef $1_H
+#define $1_H
+
+#include <vector>
+
+class $2
+{
+    public:
+    $2($3);
+    ~$2();
+
+    private:
+};
+
+#endif
+endsnippet
+
+snippet template_1
+template <typename $1>
+class $2
+{
+    public:
+    $2($3);
+    ~$2();$0
+    private:
+};
+endsnippet
+
+snippet template_2
+template <typename $1, typename $2>
+class $3
+{
+    public:
+    $3($4);
+    ~$3();$0
+
+    private
+};
+endsnippet
+
+snippet template_3
+template <typename $1, typename $2, typename $3>
+class $4
+{
+    public:
+    $4($5);
+    ~$4();$0
+
+    private:
+};
 endsnippet
