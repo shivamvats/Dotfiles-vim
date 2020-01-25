@@ -35,11 +35,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/MatchTagAlways'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vista.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'Yggdroot/indentLine'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'lervag/vimtex'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -424,10 +427,15 @@ call plug#end()
     " }
 
     " Tagbar {
-    if isdirectory(expand("~/.vim/plugged/tagbar"))
-        nmap <leader>tt :TagbarToggle<CR>
-    endif
+    "if isdirectory(expand("~/.vim/plugged/tagbar"))
+        "nmap <leader>tt :TagbarToggle<CR>
+    "endif
     " }
+    " Using Vista instead
+    nmap <leader>tt :Vista show<CR>
+    " Go to the tag in the bar
+    nmap <leader>tm :Vista focus<CR>
+    nmap <leader>tc :Vista!<CR>
 
     " vim-expand-region {
     vmap v <Plug>(expand_region_expand)
@@ -611,3 +619,6 @@ nnoremap <esc> :noh<return><esc>
 
 " Browse old files
 nnoremap :bro :browse oldfiles 
+
+"FZF
+nnoremap <C-b> :Buffers<CR>
