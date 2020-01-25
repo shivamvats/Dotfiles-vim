@@ -93,6 +93,7 @@ call plug#end()
         color espresso-soda
         set bg=light
     endif
+    set bg=light
 
     if has('cmdline_info')
         set ruler                   " Show the ruler
@@ -578,6 +579,13 @@ let g:vimwiki_list = [{
   \ 'template_ext': '.html'}]
 
 nmap <Leader>wah :VimwikiAll2HTML<CR>
+
+"Fugitive
+nmap <Leader>st :Gstatus<CR>
+nmap <Leader>df :Gdiff<CR>
+nmap <Leader>wr :Gwrite<CR>
+nmap <Leader>ci :Gcommit<CR>
+nmap <Leader>rm :Gremove<CR>
 
 " Switch between cases by pressing ~.
 function! TwiddleCase(str)
