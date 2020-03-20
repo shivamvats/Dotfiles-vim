@@ -11,7 +11,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'docunext/closetag.vim'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'altercation/vim-colors-solarized'
+Plug 'icymind/NeoSolarized'
 Plug 'tomtom/quickfixsigns_vim'
 Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
 Plug 'SirVer/ultisnips'
@@ -82,18 +82,11 @@ call plug#end()
         " Always switch to the current file directory
     endif
 
-    color smyck
-    if filereadable(expand("~/.vim/plugged/vim-colors-solarized/colors/solarized.vim"))
-        let g:solarized_termcolors=256
-        let g:solarized_contrast="normal"
-        let g:solarized_visibility="normal"
-        color solarized
-        set bg=dark
-    else
-        "color espresso-soda
-        set bg=light
-    endif
+    "color smyck
+
+    colorscheme NeoSolarized
     set bg=light
+    "set bg=dark
 
     if has('cmdline_info')
         set ruler                   " Show the ruler
