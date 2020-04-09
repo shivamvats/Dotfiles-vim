@@ -406,9 +406,12 @@ call plug#end()
         let g:ycm_warning_symbol = 'W'
         let g:ycm_autoclose_preview_window_after_completion=1
         let g:ycm_confirm_extra_conf = 0
-        let g:ycm_goto_buffer_command='vertical-split'
+        let g:ycm_goto_buffer_command= 'same-buffer' "'vertical-split'
         let g:ycm_show_diagnostics_ui = 1
         " let g:ycm_cache_omnifunc = 1
+
+        nnoremap <leader>r :YcmCompleter GoToReferences <CR>
+        nnoremap <leader>s :YcmCompleter GoToType<CR>
     endif
     " }
 
@@ -626,6 +629,7 @@ nnoremap :bro :browse oldfiles
 
 "FZF
 nnoremap <C-b> :Buffers<CR>
+nnoremap <C-m> :Marks<CR>
 
 "QFEnter
 "Open file in quickfix list in a split
