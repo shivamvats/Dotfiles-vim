@@ -143,7 +143,8 @@ call plug#end()
     set viminfo='20,\"500
     set hidden
     set history=100
-    set clipboard=unnamedplus
+    "set clipboard=unnamedplus
+    set clipboard+=unnamedplus
     set scrolloff=10
     set foldenable
 " }
@@ -169,7 +170,7 @@ call plug#end()
         autocmd!
 
         autocmd FileType text setlocal spell
-        autocmd FileType haskell,puppet,ruby,yml,html setlocal expandtab shiftwidth=2 softtabstop=2
+        autocmd FileType haskell,puppet,ruby,yml,html,yaml,urdf setlocal expandtab shiftwidth=2 softtabstop=2
 
         " When editing a file, always jump to the last known cursor position.
         " Don't do it for commit messages, when the position is invalid, or when
