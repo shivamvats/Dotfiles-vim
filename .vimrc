@@ -23,6 +23,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'dense-analysis/ale'
+Plug 'yssl/QFEnter'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
@@ -624,3 +625,11 @@ nnoremap :bro :browse oldfiles
 
 "FZF
 nnoremap <C-b> :Buffers<CR>
+
+"QFEnter
+"Open file in quickfix list in a split
+"Emulates CtrlP behavior
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
