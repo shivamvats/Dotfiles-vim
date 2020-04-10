@@ -47,7 +47,7 @@ Plug 'junegunn/fzf.vim'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}
+Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
 Plug 'xolox/vim-notes', {'on': 'Notes'}
 Plug 'chrisbra/NrrwRgn', {'on': 'NrrwRgn'}
 Plug 'mtth/scratch.vim', {'on': 'Scratch'}
@@ -582,7 +582,8 @@ nmap <Leader>wah :VimwikiAll2HTML<CR>
 "Fugitive
 nmap <Leader>st :Gstatus<CR>
 nmap <Leader>df :Gdiff<CR>
-nmap <Leader>wr :Gwrite<CR>
+nmap <Leader>gw :Gwrite<CR>
+nmap <Leader>gr :Gread<CR>
 nmap <Leader>ci :Gcommit<CR>
 nmap <Leader>rm :Gremove<CR>
 
