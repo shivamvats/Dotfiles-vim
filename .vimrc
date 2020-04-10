@@ -391,10 +391,12 @@ call plug#end()
     endif
     " }
 
-    " gundo {
-    if isdirectory(expand("~/.vim/plugged/gundo.vim"))
-        nnoremap <F5> :GundoToggle<CR>
-    endif
+    " mundo {
+        nnoremap <F5> :MundoToggle<CR>
+        set undofile
+        set undodir=~/.vim/undo
+        let g:mundo_width = 60
+        let g:mundo_preview_height = 30
     " }
 
     " YouCompleteMe {
