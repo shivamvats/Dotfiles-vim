@@ -17,7 +17,6 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
-Plug 'Rykka/riv.vim'
 Plug 'Rykka/InstantRst'
 Plug 'vimwiki/vimwiki'
 Plug 'vim-pandoc/vim-pandoc'
@@ -41,7 +40,6 @@ Plug 'liuchengxu/vista.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'Yggdroot/indentLine'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -53,14 +51,16 @@ Plug 'chrisbra/NrrwRgn', {'on': 'NrrwRgn'}
 Plug 'mtth/scratch.vim', {'on': 'Scratch'}
 Plug 'mattn/gist-vim', {'on': 'Gist'}
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+
 " filetype specific plugins
+Plug 'lervag/vimtex', {'for': ['tex']}
 Plug 'othree/html5.vim', {'for': ['html']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 Plug 'itspriddle/vim-jquery', {'for': ['javascript']}
 Plug 'bitc/vim-hdevtools', {'for': 'haskell'}
 Plug 'fs111/pydoc.vim', {'for': 'python'}
-Plug 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
 
 call plug#end()
 
