@@ -21,7 +21,7 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'vimwiki/vimwiki'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 "Plug 'yssl/QFEnter'
 
 Plug 'ctrlpvim/ctrlp.vim'
@@ -300,6 +300,24 @@ call plug#end()
 
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    " Use <c-space> to trigger completion.
+    inoremap <silent><expr> <c-space> coc#refresh()
+
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else
+            call CocAction('doHover')
+        endif
+    endfunction
+
+    " GoTo code navigation.
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
     " }
 
     " airline {
