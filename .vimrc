@@ -3,10 +3,11 @@ call plug#begin('~/.vim/plugged')
 " always enabled
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'scrooloose/syntastic'
 "Plug 'myint/syntastic-extras'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
 "Plug 'docunext/closetag.vim'
@@ -127,6 +128,8 @@ call plug#end()
     set clipboard+=unnamedplus
     set scrolloff=10
     set foldenable
+
+    set statusline^=%{coc#status()}
 " }
 
 " Formatting {
@@ -210,10 +213,12 @@ call plug#end()
     nmap <Leader>n :tabnext<cr>
     nmap <Leader>p :tabprevious<cr>
     nmap <Leader>c :tabclose<cr>
-    nmap <Leader>to :tabe 
+    nmap <Leader>to :tabe
 
-    "
     noremap <leader>ss :call StripWhitespace()<CR>
+
+    " Disable highlight on pressing ESC
+    nnoremap <esc> :noh<return><esc>
 " }
 
 " Functions {
@@ -252,6 +257,20 @@ call plug#end()
 " }
 
 " Plugins specific settings {
+"
+    " FZF {
+    nnoremap <C-b> :Buffers<CR>
+    nnoremap <C-m> :Marks<CR>
+    " }
+
+    " Fugitive {
+    nmap <Leader>st :Gstatus<CR>
+    nmap <Leader>df :Gdiff<CR>
+    nmap <Leader>gw :Gwrite<CR>
+    nmap <Leader>gr :Gread<CR>
+    nmap <Leader>ci :Gcommit<CR>
+    nmap <Leader>rm :Gremove<CR>
+    " }
 
     " nerdTree {
     if isdirectory(expand("~/.vim/plugged/nerdtree"))
@@ -259,5 +278,49 @@ call plug#end()
         let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.vim$', '\~$', '\.pyc$']
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
     endif
+    " }
+
+    " CoC {
+    let g:coc_global_extensions = [
+        \ 'coc-snippets',
+        \ 'coc-pairs',
+        \ 'coc-python',
+        \ ]
+
+    " use <tab> for trigger completion and navigate to the next complete item
+    function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+
+    inoremap <silent><expr> <Tab>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    " }
+
+    " airline {
+    if isdirectory(expand("~/.vim/plugged/vim-airline"))
+        let g:airline_theme = 'solarized'
+         "let g:airline_powerline_fonts=1
+        let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+        let g:airline_section_a=''
+        let g:airline_section_z = ''
+        let g:airline_section_y = '%c | %l/%L | %P'
+    endif
+    " }
+
+    " Vimtex {
+    let g:vimtex_compiler_latexmk = {
+            \ 'build_dir' : 'build',
+            \ 'continuous' : 1
+            \}
+    let g:vimtex_quickfix_autojump=0
+    let g:vimtex_quickfix_mode=2
+    let g:vimtex_quickfix_open_on_warning=0
+    let g:vimtex_quickfix_open_on_error=0
     " }
 " }
