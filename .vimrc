@@ -8,6 +8,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'myint/syntastic-extras'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Check it out
+"Plug 'itchyny/lightline '
 Plug 'scrooloose/nerdcommenter'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
 "Plug 'docunext/closetag.vim'
@@ -35,7 +37,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'jiangmiao/auto-pairs'
 "Plug 'Valloric/MatchTagAlways'
 "Plug 'majutsushi/tagbar'
-"Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vista.vim'
 "Plug 'terryma/vim-expand-region'
 "Plug 'Yggdroot/indentLine'
 "Plug 'jistr/vim-nerdtree-tabs'
@@ -331,6 +333,12 @@ call plug#end()
     endif
     " }
 
+    " lightline {
+    "if isdirectory(expand("~/.vim/plugged/lightline"))
+
+    "endif
+    " }
+ 
     " Vimtex {
     let g:vimtex_compiler_latexmk = {
             \ 'build_dir' : 'build',
@@ -340,5 +348,26 @@ call plug#end()
     let g:vimtex_quickfix_mode=2
     let g:vimtex_quickfix_open_on_warning=0
     let g:vimtex_quickfix_open_on_error=0
+    " }
+
+    " Vista {
+    let g:vista_fzf_preview = ['right:50%']
+    nmap <leader>tt :Vista show<CR>
+    " Go to the tag in the bar
+    nmap <leader>tm :Vista focus<CR>
+    nmap <leader>tc :Vista!<CR>
+
+    function! NearestMethodOrFunction() abort
+    return get(b:, 'vista_nearest_method_or_function', '')
+    endfunction
+
+    set statusline^=%{NearestMethodOrFunction()}
+
+    " By default vista.vim never run if you don't call it explicitly.
+    "
+    " If you want to show the nearest function in your statusline automatically,
+    " you can add the following line to your vimrc 
+    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
     " }
 " }
