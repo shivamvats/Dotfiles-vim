@@ -8,6 +8,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'myint/syntastic-extras'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'ryanoasis/vim-devicons'
 " Check it out
 "Plug 'itchyny/lightline '
 Plug 'scrooloose/nerdcommenter'
@@ -28,17 +29,20 @@ Plug 'dense-analysis/ale'
 
 Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'vim-scripts/taglist.vim'
+" Add repeat support to plugin remaps
 "Plug 'tpope/vim-repeat'
 "Plug 'godlygeek/tabular'
 "Plug 'Shougo/unite.vim'
 "Plug 'terryma/vim-multiple-cursors'
-"Plug 'tpope/vim-surround'
+" Replace surrounding markers
+Plug 'tpope/vim-surround'
+" Incrementally expand selected region
+Plug 'terryma/vim-expand-region'
 "Plug 'tpope/vim-endwise'
 "Plug 'jiangmiao/auto-pairs'
 "Plug 'Valloric/MatchTagAlways'
 "Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
-"Plug 'terryma/vim-expand-region'
 "Plug 'Yggdroot/indentLine'
 "Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -130,8 +134,6 @@ call plug#end()
     set clipboard+=unnamedplus
     set scrolloff=10
     set foldenable
-
-    set statusline^=%{coc#status()}
 " }
 
 " Formatting {
@@ -171,6 +173,10 @@ call plug#end()
         " Set spell for markdown files
         autocmd BufRead,BufNewFile *.md setlocal spell
     augroup END
+
+    set spell
+    autocmd BufEnter * silent! lcd %:p:h
+    set formatprg=par
 
     let g:omni_complete=1
 
@@ -328,8 +334,11 @@ call plug#end()
          "let g:airline_powerline_fonts=1
         let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
         let g:airline_section_a=''
+        "let g:airline_section_y=''
         let g:airline_section_z = ''
         let g:airline_section_y = '%c | %l/%L | %P'
+        let g:airline#extensions#coc#enabled = 0
+        let g:airline#extensions#ale#enabled = 0
     endif
     " }
 
@@ -368,6 +377,15 @@ call plug#end()
     " If you want to show the nearest function in your statusline automatically,
     " you can add the following line to your vimrc 
     autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+    " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+    let g:vista#renderer#enable_icon = 0
+
+    " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+    let g:vista#renderer#icons = {
+    \   "function": "\uf794",
+    \   "variable": "\uf71b",
+    \  }
 
     " }
 " }
