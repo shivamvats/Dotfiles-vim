@@ -17,4 +17,15 @@
     "<C-t>": "action:tabe",
     "<C-w>": "command:wincmd k"
     },
+
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+
+    "clangd.enabled": "true",
+    "languageserver": {
+        "clangd": {
+        "command": "clangd",
+        "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+        "filetypes": ["c", "cpp", "objc", "objcpp"]
+        }
+    }
 }

@@ -67,6 +67,7 @@ Plug 'lervag/vimtex', {'for': ['tex']}
 "Plug 'fs111/pydoc.vim', {'for': 'python'}
 "Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 
 call plug#end()
 
@@ -228,6 +229,17 @@ call plug#end()
 
     " Disable highlight on pressing ESC
     nnoremap <esc> :noh<return><esc>
+
+    " Clojure
+    autocmd FileType clojure nnoremap <buffer> <leader>re :Eval<cr>
+    autocmd FileType clojure vnoremap <buffer> <leader>re :Eval<cr>
+    autocmd FileType clojure nnoremap <buffer> <leader>rf :%Eval<cr>
+    autocmd FileType clojure nnoremap <buffer> <leader>rr :Require<cr>
+    autocmd FileType clojure nnoremap <buffer> <leader>rR :Require!<cr>
+    autocmd FileType clojure nnoremap <buffer> <leader>rt :RunTests<cr>
+    autocmd FileType clojure nnoremap <buffer> <leader>rl :Last<cr>
+    autocmd FileType clojure nnoremap <buffer> <leader>rc :FireplaceConnect<cr>
+    autocmd FileType clojure nnoremap <buffer> gd :normal [<c-d><cr>
 " }
 
 " Functions {
@@ -330,6 +342,18 @@ call plug#end()
 
         "coc-list
         nmap <silent>  <leader>ag <Plug>(coc-list grep)
+
+        autocmd CursorHold * silent call CocActionAsync('highlight')
+
+        function! s:EditAlternate()
+            let l:alter = CocRequest('clangd', 'textDocument/switchSourceHeader', {'uri': 'file://'.expand("%:p")})
+            " remove file:/// from response
+            let l:alter = substitute(l:alter, "file://", "", "")
+            execute 'edit ' . l:alter
+        endfunction
+
+        "autocmd vimrc FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
+        autocmd FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
     " }
 
     " airline {
