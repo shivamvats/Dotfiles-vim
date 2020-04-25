@@ -66,6 +66,7 @@ Plug 'lervag/vimtex', {'for': ['tex']}
 "Plug 'bitc/vim-hdevtools', {'for': 'haskell'}
 "Plug 'fs111/pydoc.vim', {'for': 'python'}
 "Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 
 call plug#end()
 
@@ -289,43 +290,46 @@ call plug#end()
     " }
 
     " CoC {
-    let g:coc_global_extensions = [
-        \ 'coc-snippets',
-        \ 'coc-pairs',
-        \ 'coc-python',
-        \ ]
+        let g:coc_global_extensions = [
+            \ 'coc-snippets',
+            \ 'coc-pairs',
+            \ 'coc-python',
+            \ ]
 
-    " use <tab> for trigger completion and navigate to the next complete item
-    function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
+        " use <tab> for trigger completion and navigate to the next complete item
+        function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+        endfunction
 
-    inoremap <silent><expr> <Tab>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<Tab>" :
-        \ coc#refresh()
+        inoremap <silent><expr> <Tab>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<Tab>" :
+            \ coc#refresh()
 
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+        inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-    " Use <c-space> to trigger completion.
-    inoremap <silent><expr> <c-space> coc#refresh()
+        " Use <c-space> to trigger completion.
+        inoremap <silent><expr> <c-space> coc#refresh()
 
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
-    function! s:show_documentation()
-        if (index(['vim','help'], &filetype) >= 0)
-            execute 'h '.expand('<cword>')
-        else
-            call CocAction('doHover')
-        endif
-    endfunction
+        nnoremap <silent> K :call <SID>show_documentation()<CR>
+        function! s:show_documentation()
+            if (index(['vim','help'], &filetype) >= 0)
+                execute 'h '.expand('<cword>')
+            else
+                call CocAction('doHover')
+            endif
+        endfunction
 
-    " GoTo code navigation.
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
+        " GoTo code navigation.
+        nmap <silent> gd <Plug>(coc-definition)
+        nmap <silent> gy <Plug>(coc-type-definition)
+        nmap <silent> gi <Plug>(coc-implementation)
+        nmap <silent> gr <Plug>(coc-references)
+
+        "coc-list
+        nmap <silent>  <leader>ag <Plug>(coc-list grep)
     " }
 
     " airline {
@@ -387,5 +391,5 @@ call plug#end()
     \   "variable": "\uf71b",
     \  }
 
-    " }
+    "}
 " }
