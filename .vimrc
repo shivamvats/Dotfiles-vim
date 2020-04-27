@@ -40,13 +40,14 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 "Plug 'tpope/vim-endwise'
 "Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 "Plug 'Valloric/MatchTagAlways'
 "Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 "Plug 'Yggdroot/indentLine'
 "Plug 'jistr/vim-nerdtree-tabs'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Cute mappings
+Plug 'tpope/vim-unimpaired'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
