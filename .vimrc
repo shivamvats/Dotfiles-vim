@@ -281,18 +281,21 @@ call plug#end()
 " Plugins specific settings {
 "
     " FZF {
-    nnoremap <C-b> :Buffers<CR>
-    nnoremap <C-m> :Marks<CR>
-    " }
+        nnoremap <C-b> :Buffers<CR>
+        nnoremap <C-m> :Marks<CR>
+    "}
 
     " Fugitive {
-    nmap <Leader>st :Gstatus<CR>
-    nmap <Leader>df :Gdiff<CR>
-    nmap <Leader>gw :Gwrite<CR>
-    nmap <Leader>gr :Gread<CR>
-    nmap <Leader>ci :Gcommit<CR>
-    nmap <Leader>rm :Gremove<CR>
-    " }
+        nmap <Leader>st :Gstatus<CR>
+        nmap <Leader>df :Gdiff<CR>
+        nmap <Leader>gw :Gwrite<CR>
+        nmap <Leader>gr :Gread<CR>
+        nmap <Leader>ci :Gcommit<CR>
+        nmap <Leader>rm :Gremove<CR>
+
+        vmap <Leader>get :diffget<CR>
+        vmap <Leader>put :diffput<CR>
+    "}
 
     " nerdTree {
     if isdirectory(expand("~/.vim/plugged/nerdtree"))
