@@ -241,6 +241,11 @@ call plug#end()
     autocmd FileType clojure nnoremap <buffer> <leader>rl :Last<cr>
     autocmd FileType clojure nnoremap <buffer> <leader>rc :FireplaceConnect<cr>
     autocmd FileType clojure nnoremap <buffer> gd :normal [<c-d><cr>
+
+    " Insert single char in normal mode
+    " Side-effect - over-writes the standard `s` command
+    :nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
+    :nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
 " }
 
 " Functions {
