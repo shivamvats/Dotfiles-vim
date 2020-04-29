@@ -4,6 +4,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 "Plug 'scrooloose/syntastic'
 "Plug 'myint/syntastic-extras'
 Plug 'vim-airline/vim-airline'
@@ -291,6 +293,12 @@ call plug#end()
     " FZF {
         nnoremap <C-b> :Buffers<CR>
         nnoremap <C-m> :Marks<CR>
+
+        let g:fzf_action = {
+        \ 'ctrl-t': 'tab split',
+        \ 'ctrl-s': 'split',
+        \ 'ctrl-v': 'vsplit' }
+
     "}
 
     " Fugitive {
