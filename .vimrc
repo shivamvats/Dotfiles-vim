@@ -44,8 +44,8 @@ Plug 'tpope/vim-surround'
 " Incrementally expand selected region
 Plug 'terryma/vim-expand-region'
 "Plug 'tpope/vim-endwise'
-"Plug 'jiangmiao/auto-pairs'
-Plug 'tmsvg/pear-tree'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'tmsvg/pear-tree'
 "Plug 'Valloric/MatchTagAlways'
 "Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
@@ -251,6 +251,11 @@ call plug#end()
     " Side-effect - over-writes the standard `s` command
     :nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
     :nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
+
+    " Bring cursor the right of current bracket pair
+    " in insert mode
+    " Genius!
+    inoremap <C-l> <Esc>%%a
 " }
 
 " Functions {
@@ -449,4 +454,13 @@ call plug#end()
     \   "variable": "\uf71b",
     \  }
     "}
+    "
+    " Pear-tree {
+    " Automatically map <BS>, <CR>, and <Esc>
+        "let g:pear_tree_map_special_keys = 1
+        " Smart pairs are disabled by default:
+        "let g:pear_tree_smart_openers = 1
+        "let g:pear_tree_smart_closers = 1
+        "let g:pear_tree_smart_backspace = 1
+    " }
 " }
