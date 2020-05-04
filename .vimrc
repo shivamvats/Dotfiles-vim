@@ -213,6 +213,36 @@ call plug#end()
     let maplocalleader=",,"
     set pastetoggle=<F2>
 
+    " Saving and exiting
+    imap <Leader>e <esc>
+    nmap <Leader>e :noh<return><esc>
+    nmap <Leader>w :w<CR>
+    imap <Leader>w <esc>:w<CR>
+    nmap <Leader>q :wq<CR>
+    imap <Leader>q <esc>:wq<CR>
+
+    " Split control
+    nmap <Leader>vp :vsp<space>
+    nmap <Leader>sp :sp<space>
+
+    " Tab control
+    nmap <Leader>t :tabnew<cr>
+    nmap <Leader>n :tabnext<cr>
+    nmap <Leader>p :tabprevious<cr>
+    nmap <Leader>c :tabclose<cr>
+
+    noremap <leader>ss :call StripWhitespace()<CR>
+
+    " Disable highlight on pressing ESC
+    nnoremap <esc> :noh<return><esc>
+
+    nnoremap <Plug>unimpairedBlankUp   :<C-U>call <SID>BlankUp(v:count1)<CR>
+    nnoremap <Plug>unimpairedBlankDown :<C-U>call <SID>BlankDown(v:count1)<CR>
+
+    " Insert a blank line without going into insert mode.
+    nmap [<space> <Plug>unimpairedBlankUp
+    nmap ]<space> <Plug>unimpairedBlankDown
+
     " Windows like movements for long lines with wrap enabled:
     noremap j gj
     noremap k gk
@@ -223,18 +253,6 @@ call plug#end()
     " Do not leave visual mode after visually shifting text
     vnoremap < <gv
     vnoremap > >gv
-
-    " Tab control
-    nmap <Leader>t :tabnew<cr>
-    nmap <Leader>n :tabnext<cr>
-    nmap <Leader>p :tabprevious<cr>
-    nmap <Leader>c :tabclose<cr>
-    nmap <Leader>to :tabe
-
-    noremap <leader>ss :call StripWhitespace()<CR>
-
-    " Disable highlight on pressing ESC
-    nnoremap <esc> :noh<return><esc>
 
     " Clojure
     autocmd FileType clojure nnoremap <buffer> <leader>re :Eval<cr>
@@ -291,6 +309,17 @@ call plug#end()
         set lines=40
     endif
 
+    function! s:BlankUp(count) abort
+    put!=repeat(nr2char(10), a:count)
+    ']+1
+    silent! call repeat#set("\<Plug>unimpairedBlankUp", a:count)
+    endfunction
+
+    function! s:BlankDown(count) abort
+    put =repeat(nr2char(10), a:count)
+    '[-1
+    silent! call repeat#set("\<Plug>unimpairedBlankDown", a:count)
+    endfunction
 " }
 
 " Plugins specific settings {
