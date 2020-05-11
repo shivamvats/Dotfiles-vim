@@ -19,7 +19,7 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
 "Plug 'docunext/closetag.vim'
-"Plug 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 "Plug 'tomtom/quickfixsigns_vim'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
 "Plug 'SirVer/ultisnips'
@@ -491,5 +491,9 @@ call plug#end()
         "let g:pear_tree_smart_openers = 1
         "let g:pear_tree_smart_closers = 1
         "let g:pear_tree_smart_backspace = 1
+    " }
+    "
+    " auto-pairs {
+    "   alt-e : moves closing paranthesis to the end of the next word/unit
     " }
 " }
