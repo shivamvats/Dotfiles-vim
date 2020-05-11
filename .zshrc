@@ -141,6 +141,8 @@ set keymap vi-command
 #export ROS_WORKSPACE="/usr0/home/svats/ros/catkin_ws"
 #export ROS_WORKSPACE="/usr0/home/svats/ros/pillar_ws"
 
+/usr/bin/setxkbmap -option 'caps:ctrl_modifier'
+/usr/bin/xcape -e 'Caps_Lock=Escape' -t 200
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
