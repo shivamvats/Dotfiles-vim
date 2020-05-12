@@ -33,6 +33,8 @@ Plug 'dense-analysis/ale'
 "Plug 'yssl/QFEnter'
 
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'kshenoy/vim-signature'
+Plug 'Yilin-Yang/vim-markbar'
 "Plug 'vim-scripts/taglist.vim'
 " Add repeat support to plugin remaps
 "Plug 'tpope/vim-repeat'
@@ -494,6 +496,10 @@ call plug#end()
     " }
     "
     " auto-pairs {
-    "   alt-e : moves closing paranthesis to the end of the next word/unit
+       "alt-e : moves closing paranthesis to the end of the next word/unit
+    " }
+    "
+    " vim-markbar {
+        nmap <Leader>m <Plug>ToggleMarkbar
     " }
 " }
