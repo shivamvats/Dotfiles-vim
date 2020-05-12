@@ -162,6 +162,7 @@ call plug#end()
     set tw=79
     syntax on
     set foldmethod=syntax
+    set foldnestmax=3
 
     augroup vimrcEx
         autocmd!
@@ -217,11 +218,11 @@ call plug#end()
 
     " Saving and exiting
     imap <Leader>e <esc>
-    nmap <Leader>e :noh<return><esc>
+    nmap <Leader>e :e
     nmap <Leader>w :w<CR>
     imap <Leader>w <esc>:w<CR>
-    nmap <Leader>q :wq<CR>
-    imap <Leader>q <esc>:wq<CR>
+    nmap <Leader>q :q<CR>
+    imap <Leader>q <esc>:q<CR>
 
     " Split control
     nmap <Leader>vp :vsp<space>
@@ -362,6 +363,7 @@ call plug#end()
             \ 'coc-snippets',
             \ 'coc-pairs',
             \ 'coc-python',
+            \ 'coc-lists',
             \ ]
 
         " use <tab> for trigger completion and navigate to the next complete item
@@ -411,7 +413,8 @@ call plug#end()
         nmap <silent> gr <Plug>(coc-references)
 
         "coc-list
-        nmap <silent>  <leader>ag <Plug>(coc-list grep)
+        "nmap <Leader>ag <Plug>(coc-list grep)
+        nmap <Leader>ag :CocList grep<CR>
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
 
