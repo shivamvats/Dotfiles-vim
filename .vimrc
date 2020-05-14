@@ -51,7 +51,7 @@ Plug 'jiangmiao/auto-pairs'
 "Plug 'Valloric/MatchTagAlways'
 "Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
-"Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 "Plug 'jistr/vim-nerdtree-tabs'
 " Cute mappings
 Plug 'tpope/vim-unimpaired'
@@ -72,7 +72,10 @@ Plug 'lervag/vimtex', {'for': ['tex']}
 "Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 "Plug 'itspriddle/vim-jquery', {'for': ['javascript']}
 "Plug 'bitc/vim-hdevtools', {'for': 'haskell'}
-"Plug 'fs111/pydoc.vim', {'for': 'python'}
+" Search Python documentation
+Plug 'fs111/pydoc.vim', {'for': 'python'}
+" Evaluate code in a vim buffer. Buggy.
+"Plug 'metakirby5/codi.vim', {'for': 'python'}
 "Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
@@ -521,5 +524,10 @@ call plug#end()
     "
     " vim-markbar {
         nmap <Leader>m <Plug>ToggleMarkbar
+        let g:markbar_enable_peekaboo = v:false
+    " }
+    "
+    " pydoc {
+        nmap <Leader>d :Pydoc
     " }
 " }
