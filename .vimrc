@@ -79,6 +79,8 @@ Plug 'fs111/pydoc.vim', {'for': 'python'}
 "Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+" Lazy loading fucks this up
+Plug 'JuliaEditorSupport/julia-vim'
 
 call plug#end()
 
@@ -143,8 +145,8 @@ call plug#end()
     set viminfo='20,\"500
     set hidden
     set history=100
-    "set clipboard=unnamedplus
-    set clipboard+=unnamedplus
+    set clipboard=unnamedplus
+    "set clipboard+=unnamedplus
     set scrolloff=10
     set foldenable
 " }
@@ -280,6 +282,8 @@ call plug#end()
     " in insert mode
     " Genius!
     inoremap <C-l> <Esc>%%a
+
+    " [[ /  ]]: jump to previous/next function
 " }
 
 " Functions {
@@ -529,5 +533,11 @@ call plug#end()
     "
     " pydoc {
         nmap <Leader>d :Pydoc
+    " }
+    "
+    " indentline {
+        let g:indentLine_setConceal=2
+        let g:indentLine_concealcursor='nv'
+        autocmd FileType tex :IndentLinesDisable
     " }
 " }
