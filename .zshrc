@@ -128,6 +128,9 @@ export PATH=/home/aries/Software/texlive/2020/bin/x86_64-linux:$PATH
 export PATH=/home/aries/lolocal/bin:$PATH
 #export PATH=/usr0/home/svats/bin:$PATH
 
+# coloredlogs for python
+export COLOREDLOGS_LOG_FORMAT='%(asctime)s %(name)s[%(process)d]- %(message)s'
+
 #source /opt/ros/kinetic/setup.zsh
 
 #source /usr0/local/bin/virtualenvwrapper.sh
