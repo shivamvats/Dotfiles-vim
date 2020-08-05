@@ -1,0 +1,35 @@
+[user]
+	email = shivamvats.iitkgp@gmail.com
+	name = Shivam Vats
+[credential]
+	helper = cache
+[alias]
+    st = status
+    ck = checkout
+    ci = commit
+    df = diff
+    dfc = diff --cached
+    br = branch
+[alias]
+    remember = config --global credential.helper cache
+[alias]
+    save = !sh -c 'export PREV=$(git symbolic-ref HEAD|cut -d/ -f3-) && git checkout -b "$1" && git commit -am "$1" && git checkout "$PREV"' -
+[alias]
+    sub = "!f() { git branch -D $1 && git branch -m $1; }; f"
+
+#[http]
+#	proxy = http://10.3.100.207:8080
+#[https]
+#	proxy = https://10.3.100.207:8080
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+
+# Print the commit tree of different branches.
+[alias]
+    tree = log --oneline --decorate --graph
+[core]
+    editor = vim
+[push]
+	default = simple
