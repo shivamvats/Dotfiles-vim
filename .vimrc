@@ -74,6 +74,8 @@ Plug 'lervag/vimtex', {'for': ['tex']}
 "Plug 'bitc/vim-hdevtools', {'for': 'haskell'}
 " Search Python documentation
 Plug 'fs111/pydoc.vim', {'for': 'python'}
+Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
+Plug 'mgedmin/python-imports.vim', {'for': 'python'}
 " Evaluate code in a vim buffer. Buggy.
 "Plug 'metakirby5/codi.vim', {'for': 'python'}
 "Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
@@ -540,4 +542,4 @@ call plug#end()
         let g:indentLine_concealcursor='nv'
         autocmd FileType tex :IndentLinesDisable
     " }
-" }
+"}

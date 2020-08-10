@@ -1,8 +1,9 @@
+
 {
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".ctrlp", ".git", ".hg", ".projections.json"],
 
-    "python.formatting.provider" : "black",
+    "python.formatting.provider" : "yapf",
     "python.jediEnabled": "true",
 
     "suggest.maxPreviewWidth": "45",
