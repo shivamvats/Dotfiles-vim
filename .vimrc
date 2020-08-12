@@ -22,7 +22,6 @@ Plug 'SirVer/ultisnips'
 Plug 'Lokaltog/vim-easymotion'
 "Plug 'tomtom/quickfixsigns_vim'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
-"Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
 "Plug 'ervandew/supertab'
 "Plug 'Rykka/InstantRst'
@@ -340,6 +339,7 @@ call plug#end()
         nnoremap <C-b> :Buffers<CR>
         nnoremap <C-m> :Marks<CR>
         nnoremap <C-s> :Ag<CR>
+        nnoremap <C-h> : History<CR>
 
         let g:fzf_action = {
         \ 'ctrl-t': 'tab split',
