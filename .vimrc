@@ -74,7 +74,6 @@ Plug 'lervag/vimtex', {'for': ['tex']}
 " Search Python documentation
 Plug 'fs111/pydoc.vim', {'for': 'python'}
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
-Plug 'mgedmin/python-imports.vim', {'for': 'python'}
 " Evaluate code in a vim buffer. Buggy.
 "Plug 'metakirby5/codi.vim', {'for': 'python'}
 "Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
@@ -285,6 +284,10 @@ call plug#end()
     inoremap <C-l> <Esc>%%a
 
     " [[ /  ]]: jump to previous/next function
+    "
+    " Terminal
+    " Go to normal mode
+    :tnoremap <Esc> <C-\><C-n>
 " }
 
 " Functions {
