@@ -122,27 +122,15 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
-#export PATH=$HOME/Software/anaconda/bin:$PATH
-#export PATH=$HOME/foss/llvm/build/bin:$PATH
 export PATH=/home/aries/Software/texlive/2020/bin/x86_64-linux:$PATH
 export PATH=/home/aries/lolocal/bin:$PATH
-#export PATH=/usr0/home/svats/bin:$PATH
 
 # coloredlogs for python
-export COLOREDLOGS_LOG_FORMAT='%(asctime)s %(name)s[%(process)d]- %(message)s'
-
-#source /opt/ros/kinetic/setup.zsh
-
-#source /usr0/local/bin/virtualenvwrapper.sh
+export COLOREDLOGS_LOG_FORMAT='%(asctime)s %(name)s %(levelname)s- %(message)s'
 
 # Vim commands for the terminal
 set editing-mode vi
 set keymap vi-command
-#export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
-#export PATH=/usr/local/cuda-9.0/bin:$PATH
-
-#export ROS_WORKSPACE="/usr0/home/svats/ros/catkin_ws"
-#export ROS_WORKSPACE="/usr0/home/svats/ros/pillar_ws"
 
 /usr/bin/setxkbmap -option 'caps:ctrl_modifier'
 /usr/bin/xcape -e 'Caps_Lock=Escape' -t 200

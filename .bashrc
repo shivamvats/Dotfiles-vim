@@ -170,13 +170,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#export PATH=$HOME/Software/anaconda/bin:$PATH
-#export PATH=$HOME/foss/llvm/build/bin:$PATH
-#export PATH=/usr/local/texlive/2017/bin/x86_64-linux:$PATH
-
-
-#source /opt/ros/indigo/setup.bash
-
 source /usr/local/bin/virtualenvwrapper.sh
 
 # Expand command on hitting space after !! or !${char}.
