@@ -54,6 +54,8 @@ Plug 'Yggdroot/indentLine'
 "Plug 'jistr/vim-nerdtree-tabs'
 " Cute mappings
 Plug 'tpope/vim-unimpaired'
+"Easier navigation
+Plug 'unblevable/quick-scope'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
