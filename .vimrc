@@ -344,6 +344,9 @@ call plug#end()
         nnoremap <C-s> :Ag<CR>
         nnoremap <C-h> : History<CR>
 
+        " Quit fzf wit Esc
+        autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+
         let g:fzf_action = {
         \ 'ctrl-t': 'tab split',
         \ 'ctrl-s': 'split',
