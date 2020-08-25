@@ -290,6 +290,8 @@ call plug#end()
     " Terminal
     " Go to normal mode
     :tnoremap <Esc> <C-\><C-n>
+    nnoremap T :split<CR> :terminal<CR>
+    nnoremap VT :vsplit<CR> :terminal<CR>
 " }
 
 " Functions {
