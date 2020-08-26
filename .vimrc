@@ -290,8 +290,8 @@ call plug#end()
     " Terminal
     " Go to normal mode
     :tnoremap <Esc> <C-\><C-n>
-    nnoremap T :split<CR> :terminal<CR>
-    nnoremap VT :vsplit<CR> :terminal<CR>
+    nnoremap T :split<CR>:terminal<CR>
+    nnoremap VT :vsplit<CR>:terminal<CR>
 " }
 
 " Functions {
@@ -463,6 +463,10 @@ call plug#end()
 
         "autocmd vimrc FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
         autocmd FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
+    " }
+    " ale {
+    let g:ale_linters = {'python' : ['flake8']}
+    let g:ale_fixers = {'python' : ['black', 'autopep8', 'isort']}
     " }
 
     " airline {
