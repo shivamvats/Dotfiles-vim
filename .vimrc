@@ -401,6 +401,10 @@ call plug#end()
             \ 'coc-pairs',
             \ 'coc-python',
             \ 'coc-lists',
+            \ 'coc-dictionary',
+            \ 'coc-tag',
+            \ 'coc-word',
+            \ 'coc-syntax'
             \ ]
 
         " use <tab> for trigger completion and navigate to the next complete item
