@@ -18,7 +18,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
-"Plug 'docunext/closetag.vim'
+Plug 'alvan/closetag.vim'
 Plug 'Lokaltog/vim-easymotion'
 "Plug 'tomtom/quickfixsigns_vim'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
@@ -83,6 +83,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 " Lazy loading fucks this up
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html']}
 
 call plug#end()
 
@@ -558,5 +559,10 @@ call plug#end()
         let g:indentLine_setConceal=2
         let g:indentLine_concealcursor='nv'
         autocmd FileType tex :IndentLinesDisable
+    " }
+    "
+    " closetag {
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+    let g:closetag_filetypes = 'html,xhtml,phtml'
     " }
 "}
