@@ -311,6 +311,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq ns-right-option-modifier 'meta)
+  (setq mac-right-option-modifier 'meta)
+
   (use-package org-roam
     :ensure t
     :hook
@@ -324,8 +327,20 @@ you should place your code here."
                 :map org-mode-map
                 (("C-c n i" . org-roam-insert))
                 (("C-c n I" . org-roam-insert-immediate))))
-  (setq ns-right-option-modifier 'meta)
-  (setq mac-right-option-modifier 'meta)
+  (use-package org-roam-server
+    :ensure t
+    :config
+    (setq org-roam-server-host "127.0.0.1"
+          org-roam-server-port 8080
+          org-roam-server-authenticate nil
+          org-roam-server-export-inline-images t
+          org-roam-server-serve-files nil
+          org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+          org-roam-server-network-poll t
+          org-roam-server-network-arrows nil
+          org-roam-server-network-label-truncate t
+          org-roam-server-network-label-truncate-length 60
+          org-roam-server-network-label-wrap-length 20))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

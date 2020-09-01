@@ -18,7 +18,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
-"Plug 'docunext/closetag.vim'
+Plug 'alvan/closetag.vim'
 Plug 'Lokaltog/vim-easymotion'
 "Plug 'tomtom/quickfixsigns_vim'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
@@ -54,6 +54,8 @@ Plug 'Yggdroot/indentLine'
 "Plug 'jistr/vim-nerdtree-tabs'
 " Cute mappings
 Plug 'tpope/vim-unimpaired'
+"Easier navigation
+Plug 'unblevable/quick-scope'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -81,6 +83,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 " Lazy loading fucks this up
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html']}
 
 call plug#end()
 
@@ -288,6 +291,8 @@ call plug#end()
     " Terminal
     " Go to normal mode
     :tnoremap <Esc> <C-\><C-n>
+    nnoremap T :split<CR>:terminal<CR>
+    nnoremap VT :vsplit<CR>:terminal<CR>
 " }
 
 " Functions {
@@ -344,6 +349,9 @@ call plug#end()
         nnoremap <C-s> :Ag<CR>
         nnoremap <C-h> : History<CR>
 
+        " Quit fzf wit Esc
+        autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+
         let g:fzf_action = {
         \ 'ctrl-t': 'tab split',
         \ 'ctrl-s': 'split',
@@ -393,6 +401,10 @@ call plug#end()
             \ 'coc-pairs',
             \ 'coc-python',
             \ 'coc-lists',
+            \ 'coc-dictionary',
+            \ 'coc-tag',
+            \ 'coc-word',
+            \ 'coc-syntax'
             \ ]
 
         " use <tab> for trigger completion and navigate to the next complete item
@@ -457,6 +469,10 @@ call plug#end()
         "autocmd vimrc FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
         autocmd FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
     " }
+    " ale {
+    let g:ale_linters = {'python' : ['flake8']}
+    let g:ale_fixers = {'python' : ['black', 'autopep8', 'isort']}
+    " }
 
     " airline {
     if isdirectory(expand("~/.vim/plugged/vim-airline"))
@@ -487,6 +503,9 @@ call plug#end()
     let g:vimtex_quickfix_mode=2
     let g:vimtex_quickfix_open_on_warning=0
     let g:vimtex_quickfix_open_on_error=0
+    let g:vimtex_view_general_viewer='okular'
+    let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+    let g:vimtex_view_general_options_latexmk = '--unique'
     " }
 
     " Vista {
@@ -544,5 +563,10 @@ call plug#end()
         let g:indentLine_setConceal=2
         let g:indentLine_concealcursor='nv'
         autocmd FileType tex :IndentLinesDisable
+    " }
+    "
+    " closetag {
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+    let g:closetag_filetypes = 'html,xhtml,phtml'
     " }
 "}
