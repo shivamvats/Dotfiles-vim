@@ -1,3 +1,5 @@
+#! /bin/zsh
+
 source ~/.zsh_aliases
 
 source ~/antigen.zsh
@@ -122,9 +124,6 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
-export PATH=/home/aries/Software/texlive/2020/bin/x86_64-linux:$PATH
-export PATH=/home/aries/lolocal/bin:$PATH
-
 # coloredlogs for python
 export COLOREDLOGS_LOG_FORMAT='%(asctime)s %(name)s %(levelname)s- %(message)s'
 
@@ -134,21 +133,5 @@ set keymap vi-command
 
 /usr/bin/setxkbmap -option 'caps:ctrl_modifier'
 /usr/bin/xcape -e 'Caps_Lock=Escape' -t 200
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/aries/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/aries/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/aries/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/aries/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-conda activate python3
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
