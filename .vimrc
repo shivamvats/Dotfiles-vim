@@ -56,6 +56,9 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-unimpaired'
 "Easier navigation
 Plug 'unblevable/quick-scope'
+" Seamless navigation bw vim and tmux
+" Didn't work
+"Plug 'christoomey/vim-tmux-navigator'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -449,6 +452,7 @@ call plug#end()
 
         " GoTo code navigation.
         nmap <silent> gd <Plug>(coc-definition)
+        nmap <silent> gD :vsp<CR><Plug>(coc-definition)
         nmap <silent> gy <Plug>(coc-type-definition)
         nmap <silent> gi <Plug>(coc-implementation)
         nmap <silent> gr <Plug>(coc-references)
@@ -469,9 +473,11 @@ call plug#end()
         "autocmd vimrc FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
         autocmd FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
     " }
+    "
     " ale {
     let g:ale_linters = {'python' : ['flake8']}
     let g:ale_fixers = {'python' : ['black', 'autopep8', 'isort']}
+    nmap <leader>alf :ALEFix<CR>
     " }
 
     " airline {
