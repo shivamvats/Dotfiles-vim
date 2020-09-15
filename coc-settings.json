@@ -3,13 +3,13 @@
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".ctrlp", ".git", ".hg", ".projections.json"],
 
-    "python.formatting.provider" : "yapf",
+    "python.formatting.provider" : "black",
     "python.jediEnabled": "true",
 
     "suggest.maxPreviewWidth": "45",
     "suggest.detailMaxLength": "30",
     "suggest.labelMaxLength": "15",
-
+    "suggest.autoTrigger": "always",
 
     "list.source.grep.command": "ag",
     "list.source.grep.args": ["-f"],
