@@ -71,6 +71,9 @@ Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 
 " filetype specific plugins
 Plug 'lervag/vimtex', {'for': ['tex']}
+" Has terrific snippets for latex
+" I have added some to my snippets file
+"Plug 'dylanaraps/wal', {'for': ['tex']}
 "Plug 'othree/html5.vim', {'for': ['html']}
 "Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 "Plug 'pangloss/vim-javascript', {'for': ['javascript']}
@@ -296,6 +299,9 @@ call plug#end()
     :tnoremap <Esc> <C-\><C-n>
     nnoremap T :split<CR>:terminal<CR>
     nnoremap VT :vsplit<CR>:terminal<CR>
+
+    " Replace the word under cursor in the whole file
+    nnoremap <Leader>s :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 " }
 
 " Functions {
