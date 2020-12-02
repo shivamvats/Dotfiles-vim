@@ -29,6 +29,11 @@ ln -s ~/.vim/.gvimrc ~/.gvimrc
 **NOTE: It is an one time step. You don't need to run `:PlugInstall` everytime
 you open a vim instance.**
 
+* Symlink the snippets directory for nvim
+```
+ln -s ~/.vim/snips ~/.config/nvim/UltiSnips
+```
+
 *  You're done! Close and start again.
 
 

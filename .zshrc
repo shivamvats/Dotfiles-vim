@@ -23,6 +23,9 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # Hit `End` to use the full suggestion
 antigen bundle zsh-users/zsh-autosuggestions
 
+# Notify
+antigen bundle marzocchi/zsh-notify
+
 # Load the theme.
 #antigen theme robbyrussell/oh-my-zsh themes/agnoster
 #antigen theme robbyrussell/oh-my-zsh themes/jreese
@@ -36,6 +39,14 @@ antigen apply
 ################
 #Plugins Loaded
 ################
+
+zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
+zstyle ':notify:*' error-title "Failure"
+zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
+zstyle ':notify:*' success-title "Success"
+#zstyle ':notify:*' activate-terminal yes
+zstyle ':notify:*' app-name sh
+zstyle ':notify:*' command-complete-timeout 15
 
 #autoload -Uz promptinit
 #promptinit
