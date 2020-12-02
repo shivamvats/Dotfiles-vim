@@ -103,6 +103,7 @@ call plug#end()
     set ttyfast
 
     " set timeout timeoutlen=500 ttimeoutlen=1
+    set timeoutlen=200
     au FocusLost * silent! wa
 
     scriptencoding utf-8
@@ -178,6 +179,8 @@ call plug#end()
     set foldmethod=syntax
     set foldnestmax=3
 
+    let g:tex_conceal=""
+
     augroup vimrcEx
         autocmd!
 
@@ -241,6 +244,7 @@ call plug#end()
     " Split control
     nmap <Leader>vp :vsp<space>
     nmap <Leader>sp :sp<space>
+    nmap <Leader>v <C-w>l :q<CR> :vsp<CR>
 
     " Tab control
     nmap <Leader>t :tabnew<cr>
@@ -302,6 +306,8 @@ call plug#end()
 
     " Replace the word under cursor in the whole file
     nnoremap <Leader>s :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
+    " Replace the word under cursor in the current line
+    nnoremap <Leader>l :s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 " }
 
 " Functions {
@@ -408,7 +414,8 @@ call plug#end()
         let g:coc_global_extensions = [
             \ 'coc-snippets',
             \ 'coc-pairs',
-            \ 'coc-python',
+            \ 'coc-jedi',
+            \ 'coc-clangd',
             \ 'coc-lists',
             \ 'coc-dictionary',
             \ 'coc-tag',
@@ -469,16 +476,10 @@ call plug#end()
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
 
-        function! s:EditAlternate()
-            let l:alter = CocRequest('clangd', 'textDocument/switchSourceHeader', {'uri': 'file://'.expand("%:p")})
-            " remove file:/// from response
-            let l:alter = substitute(l:alter, "file://", "", "")
-            execute 'edit ' . l:alter
-        endfunction
-
         "autocmd vimrc FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
-        autocmd FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
-    " }
+        "autocmd FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
+        nmap <leader>a :CocCommand clangd.switchSourceHeader<CR>
+        " }
     "
     " ale {
     let g:ale_linters = {'python' : ['flake8']}
