@@ -20,6 +20,8 @@ Plug 'SirVer/ultisnips'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'alvan/closetag.vim'
 Plug 'Lokaltog/vim-easymotion'
+" Potentially useful. Need to get to work with s
+Plug 'justinmk/vim-sneak'
 "Plug 'tomtom/quickfixsigns_vim'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
 "Plug 'honza/vim-snippets'
@@ -506,7 +508,7 @@ call plug#end()
 
     "endif
     " }
- 
+
     " Vimtex {
     let g:vimtex_compiler_latexmk = {
             \ 'build_dir' : 'build',
@@ -537,7 +539,7 @@ call plug#end()
     " By default vista.vim never run if you don't call it explicitly.
     "
     " If you want to show the nearest function in your statusline automatically,
-    " you can add the following line to your vimrc 
+    " you can add the following line to your vimrc
     autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
     " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
@@ -579,7 +581,11 @@ call plug#end()
     " }
     "
     " closetag {
-    let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-    let g:closetag_filetypes = 'html,xhtml,phtml'
+        let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+        let g:closetag_filetypes = 'html,xhtml,phtml'
     " }
-"}
+    " vim-sneak{
+        "map f <Plug>Sneak_s
+        "map F <Plug>Sneak_S
+        let g:sneak#s_next=1
+    " }

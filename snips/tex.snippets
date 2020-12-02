@@ -41,9 +41,9 @@ snippet cb "^3" iA
 ^3
 endsnippet
 
-snippet compl "complement" iA
-^{c}
-endsnippet
+#snippet compl "complement" iA
+#^{c}
+#endsnippet
 
 snippet td "superscript" iA
 ^{$1}$0
@@ -72,25 +72,25 @@ snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
 `
 endsnippet
 
-priority 10
-snippet "bar" "bar" riA
-\overline{$1}$0
-endsnippet
+#priority 10
+#snippet "bar" "bar" riA
+#\overline{$1}$0
+#endsnippet
 
-priority 100
-snippet "([a-zA-Z])bar" "bar" riA
-\overline{`!p snip.rv=match.group(1)`}
-endsnippet
+#priority 100
+#snippet "([a-zA-Z])bar" "bar" riA
+#\overline{`!p snip.rv=match.group(1)`}
+#endsnippet
 
 priority 10
-snippet "hat" "hat" riA
+snippet "hat" "hat" wA
 \hat{$1}$0
 endsnippet
 
-priority 100
-snippet "([a-zA-Z])hat" "hat" riA
-\hat{`!p snip.rv=match.group(1)`}
-endsnippet
+#priority 100
+#snippet "([a-zA-Z])hat" "hat" riA
+#\hat{`!p snip.rv=match.group(1)`}
+#endsnippet
 
 snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
 \vec{`!p snip.rv=match.group(1)`}
