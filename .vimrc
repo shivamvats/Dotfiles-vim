@@ -118,6 +118,7 @@ call plug#end()
     colorscheme solarized
     set bg=light
 
+
     if has('cmdline_info')
         set ruler                   " Show the ruler
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
@@ -178,6 +179,7 @@ call plug#end()
     set formatoptions+=t
     set tw=79
     syntax on
+    set hlsearch
     set foldmethod=syntax
     set foldnestmax=3
 
@@ -307,7 +309,7 @@ call plug#end()
     nnoremap VT :vsplit<CR>:terminal<CR>
 
     " Replace the word under cursor in the whole file
-    nnoremap <Leader>s :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
+    nnoremap <Leader>S :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
     " Replace the word under cursor in the current line
     nnoremap <Leader>l :s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 " }
@@ -414,7 +416,7 @@ call plug#end()
 
     " CoC {
         let g:coc_global_extensions = [
-            \ 'coc-snippets',
+            "\ 'coc-snippets',
             \ 'coc-pairs',
             \ 'coc-jedi',
             \ 'coc-clangd',
@@ -486,7 +488,8 @@ call plug#end()
     " ale {
     let g:ale_linters = {'python' : ['flake8']}
     let g:ale_fixers = {'python' : ['black', 'autopep8', 'isort']}
-    nmap <leader>alf :ALEFix<CR>
+    let g:ale_lint_on_insert_leave = 1
+    nmap <leader>af :ALEFix<CR>
     " }
 
     " airline {
@@ -498,7 +501,7 @@ call plug#end()
         "let g:airline_section_y=''
         let g:airline_section_z = ''
         let g:airline_section_y = '%c | %l/%L | %P'
-        let g:airline#extensions#coc#enabled = 0
+        "let g:airline#extensions#coc#enabled = 0
         let g:airline#extensions#ale#enabled = 0
     endif
     " }
@@ -588,4 +591,10 @@ call plug#end()
         "map f <Plug>Sneak_s
         "map F <Plug>Sneak_S
         let g:sneak#s_next=1
+    " }
+    " easymotion {
+        map <Leader> <Plug>(easymotion-prefix)
+        nmap s <Plug>(easymotion-overwin-f)
+        map <Leader>j <Plug>(easymotion-j)
+        map <Leader>k <Plug>(easymotion-k)
     " }

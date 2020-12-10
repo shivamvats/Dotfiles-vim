@@ -6,6 +6,10 @@
     "python.formatting.provider" : "black",
     "python.jediEnabled": "true",
 
+    "jedi.enable": true,
+    "jedi.trace.server": true,
+    "jedi.diagnostic.enable": true,
+
     "suggest.maxPreviewWidth": "45",
     "suggest.detailMaxLength": "30",
     "suggest.labelMaxLength": "15",
