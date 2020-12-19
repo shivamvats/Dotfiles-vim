@@ -22,6 +22,7 @@ Plug 'alvan/closetag.vim'
 Plug 'Lokaltog/vim-easymotion'
 " Potentially useful. Need to get to work with s
 Plug 'justinmk/vim-sneak'
+Plug 'mg979/vim-visual-multi'
 "Plug 'tomtom/quickfixsigns_vim'
 "Plug 'Valloric/YouCompleteMe', {'do': './install.sh', 'frozen': 'true'}
 "Plug 'honza/vim-snippets'
@@ -256,6 +257,9 @@ call plug#end()
     nmap <Leader>p :tabprevious<cr>
     nmap <Leader>c :tabclose<cr>
 
+    " Show file path
+    nmap <Leader>g 1<C-g>
+
     noremap <leader>ss :call StripWhitespace()<CR>
 
     " Disable highlight on pressing ESC
@@ -418,7 +422,7 @@ call plug#end()
         let g:coc_global_extensions = [
             "\ 'coc-snippets',
             \ 'coc-pairs',
-            \ 'coc-jedi',
+            \ 'coc-pyright',
             \ 'coc-clangd',
             \ 'coc-lists',
             \ 'coc-dictionary',
@@ -489,6 +493,7 @@ call plug#end()
     let g:ale_linters = {'python' : ['flake8']}
     let g:ale_fixers = {'python' : ['black', 'autopep8', 'isort']}
     let g:ale_lint_on_insert_leave = 1
+    let g:ale_disable_lsp = 1
     nmap <leader>af :ALEFix<CR>
     " }
 

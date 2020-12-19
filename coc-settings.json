@@ -2,13 +2,11 @@
 {
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".ctrlp", ".git", ".hg", ".projections.json"],
+    "diagnostic.displayByAle": "true",
 
     "python.formatting.provider" : "black",
-    "python.jediEnabled": "true",
-
-    "jedi.enable": true,
-    "jedi.trace.server": true,
-    "jedi.diagnostic.enable": true,
+    "python.jediEnabled": "false",
+    "python.linting.enabled": "true",
 
     "suggest.maxPreviewWidth": "45",
     "suggest.detailMaxLength": "30",
