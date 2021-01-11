@@ -44,15 +44,14 @@ values."
      emacs-lisp
      git
      markdown
-     org
+     (org :variables
+       org-enable-roam-support t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
      version-control
-     org-roam
-     org-roam-server
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -61,6 +60,7 @@ values."
    dotspacemacs-additional-packages '(
                                       sqlite3
                                       org-roam-server
+                                      org-roam-bibtex
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -74,6 +74,8 @@ values."
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
    dotspacemacs-install-packages 'used-only))
+   ;; (org :variables
+   ;;      org-enable-roam-support t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -320,6 +322,28 @@ you should place your code here."
   (setq mac-right-option-modifier 'meta)
   (setq-default fill-column 80
                 auto-fill-function 'do-auto-fill)
+  ;; org-roam
+  (setq org-roam-directory (file-truename "/home/aries/Dropbox/org-files/org-roam"))
+  (add-hook 'org-mode-hook 'org-roam-mode)
+
+  (use-package org-roam-server
+    :ensure t
+    :config
+    (setq org-roam-server-host "127.0.0.1"
+          org-roam-server-port 8030
+          org-roam-server-authenticate nil
+          org-roam-server-export-inline-images t
+          org-roam-server-serve-files nil
+          org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+          org-roam-server-network-poll t
+          org-roam-server-network-arrows nil
+          org-roam-server-network-label-truncate t
+          org-roam-server-network-label-truncate-length 60
+          org-roam-server-network-label-wrap-length 20))
+
+  (use-package org-roam-bibtex
+    :after org-roam
+    :hook (org-roam-mode . org-roam-bibtex-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
