@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 " always enabled
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -419,6 +420,9 @@ call plug#end()
     " }
 
     " CoC {
+        let g:node_client_debug = 1
+        " run if updating coc
+        ":call coc#util#install()
         let g:coc_global_extensions = [
             "\ 'coc-snippets',
             \ 'coc-pairs',
@@ -428,7 +432,8 @@ call plug#end()
             \ 'coc-dictionary',
             \ 'coc-tag',
             \ 'coc-word',
-            \ 'coc-syntax'
+            \ 'coc-syntax',
+            \ 'coc-highlight',
             \ ]
 
         " use <tab> for trigger completion and navigate to the next complete item

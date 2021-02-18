@@ -5,11 +5,14 @@
 	helper = cache
 [alias]
     st = status
+    stn = status -uno
     ck = checkout
     ci = commit
     df = diff
     dfc = diff --cached
     br = branch
+    pushr = push --recurse-submodules=on-demand
+    pullr = pull --recurse-submodules
 [alias]
     remember = config --global credential.helper cache
 [alias]
