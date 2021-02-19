@@ -46,6 +46,7 @@ values."
      markdown
      (org :variables
        org-enable-roam-support t)
+
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -74,8 +75,6 @@ values."
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
    dotspacemacs-install-packages 'used-only))
-   ;; (org :variables
-   ;;      org-enable-roam-support t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -322,8 +321,18 @@ you should place your code here."
   (setq mac-right-option-modifier 'meta)
   (setq-default fill-column 80
                 auto-fill-function 'do-auto-fill)
+  (global-undo-tree-mode)
+  (evil-set-undo-system 'undo-tree)
+
   ;; org-roam
-  (setq org-roam-directory (file-truename "/home/aries/Dropbox/org-files/org-roam"))
+  ;; (use-package org-roam
+  ;;   :ensure t
+  ;;   :hook
+  ;;   (after-init . org-roam-mode)
+  ;;   :custom
+  ;;   (org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/"))
+  ;; )
+  (setq org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/"))
   (add-hook 'org-mode-hook 'org-roam-mode)
 
   (use-package org-roam-server
@@ -344,6 +353,11 @@ you should place your code here."
   (use-package org-roam-bibtex
     :after org-roam
     :hook (org-roam-mode . org-roam-bibtex-mode))
+  (setq org-agenda-files '("~/Dropbox/org-files/org"))
+  ;; (setq org-default-notes-file (concat org-directory "~/Dropbox/org-files/org"))
+
+  ;; (define-key evil-normal-state-map (kbd "C-b") (kbd "SPC b"))
+  ;; (define-key map (kbd ",") (kbd "C-c"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
