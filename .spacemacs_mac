@@ -61,7 +61,6 @@ values."
    dotspacemacs-additional-packages '(
                                       sqlite3
                                       org-roam-server
-                                      org-roam-bibtex
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -354,10 +353,6 @@ you should place your code here."
     :after org-roam
     :hook (org-roam-mode . org-roam-bibtex-mode))
   (setq org-agenda-files '("~/Dropbox/org-files/org"))
-  ;; (setq org-default-notes-file (concat org-directory "~/Dropbox/org-files/org"))
-
-  ;; (define-key evil-normal-state-map (kbd "C-b") (kbd "SPC b"))
-  ;; (define-key map (kbd ",") (kbd "C-c"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
