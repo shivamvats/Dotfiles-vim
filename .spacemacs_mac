@@ -349,10 +349,18 @@ you should place your code here."
           org-roam-server-network-label-truncate-length 60
           org-roam-server-network-label-wrap-length 20))
 
-  (use-package org-roam-bibtex
-    :after org-roam
-    :hook (org-roam-mode . org-roam-bibtex-mode))
+  ;; (use-package org-roam-bibtex
+  ;;   :after org-roam
+  ;;   :hook (org-roam-mode . org-roam-bibtex-mode))
   (setq org-agenda-files '("~/Dropbox/org-files/org"))
+
+  (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
+  (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
+  (setq org-ref-default-bibliographhy '("~/Dropbox/org-files/bib/references.bib"))
+  (setq org-ref-pdf-directory "~/Dropbox/org-files/bib/pdfs")
+  (setq bibtex-completion-bibliography "~/Dropbox/org-files/bib/references.bib"
+        bibtex-completion-library-path "~/Dropbox/org-files/bib/pdfs"
+        bibtex-completion-notes-path "~/Dropbox/org-files/bib/helm-bibtex-notes")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -381,8 +389,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
-   '(org-roam-bibtex org-roam org-roam-server stickyfunc-enhance pyenv-mode pippel pipenv lsp-python-ms importmagic epc ctable concurrent deferred helm-gtags helm-cscope xcscope ggtags dap-mode posframe lsp-treemacs bui lsp-mode markdown-mode counsel-gtags counsel swiper ivy company-anaconda company blacken anaconda-mode cider-eval-sexp-fu queue parseedn clojure-mode parseclj a cider yapfify pyvenv pytest py-isort pip-requirements live-py-mode dash-functional helm-pydoc cython-mode pythonic helm-projectile projectile pkg-info auto-compile hl-todo epl helm-ag packed ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-mode-manager helm-make helm-flx helm-descbinds google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bracketed-paste auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(biblio biblio-core org-ref org-roam-bibtex org-roam org-roam-server stickyfunc-enhance pyenv-mode pippel pipenv lsp-python-ms importmagic epc ctable concurrent deferred helm-gtags helm-cscope xcscope ggtags dap-mode posframe lsp-treemacs bui lsp-mode markdown-mode counsel-gtags counsel swiper ivy company-anaconda company blacken anaconda-mode cider-eval-sexp-fu queue parseedn clojure-mode parseclj a cider yapfify pyvenv pytest py-isort pip-requirements live-py-mode dash-functional helm-pydoc cython-mode pythonic helm-projectile projectile pkg-info auto-compile hl-todo epl helm-ag packed ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-mode-manager helm-make helm-flx helm-descbinds google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bracketed-paste auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
