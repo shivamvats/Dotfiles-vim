@@ -184,6 +184,7 @@ call plug#end()
     set hlsearch
     set foldmethod=syntax
     set foldnestmax=3
+    autocmd bufreadpre *.tex setlocal textwidth=0
 
     let g:tex_conceal=""
 
