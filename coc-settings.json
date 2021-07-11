@@ -1,8 +1,8 @@
-
 {
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".ctrlp", ".git", ".hg", ".projections.json"],
-    "diagnostic.displayByAle": "true",
+    "diagnostic.displayByAle": "false",
+    "diagnostic.enable": "true",
 
     "python.formatting.provider" : "black",
     "python.jediEnabled": "false",

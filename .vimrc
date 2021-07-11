@@ -14,7 +14,7 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'ryanoasis/vim-devicons'
 " Check it out
 "Plug 'itchyny/lightline '
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 " Default Snippets
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
@@ -608,4 +608,9 @@ call plug#end()
         nmap s <Plug>(easymotion-overwin-f)
         map <Leader>j <Plug>(easymotion-j)
         map <Leader>k <Plug>(easymotion-k)
+    " }
+    "
+    " nerd-commenter{
+       "read _ as /
+        nmap <C-_> <plug>NERDCommenterToggle
     " }
