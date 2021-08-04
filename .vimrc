@@ -96,6 +96,8 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'html']}
 
 call plug#end()
+    " detect OS
+    let g:os = substitute(system('uname'), '\n', '', '')
 
 " General {
 
@@ -532,10 +534,14 @@ call plug#end()
     let g:vimtex_quickfix_mode=2
     let g:vimtex_quickfix_open_on_warning=0
     let g:vimtex_quickfix_open_on_error=0
-    let g:vimtex_view_general_viewer='okular'
-    let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-    let g:vimtex_view_general_options_latexmk = '--unique'
-    " }
+    if g:os == 'Darwin'
+        let g:vimtex_view_general_viewer='skim'
+        let g:vimtex_view_method='skim'
+        let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+    else
+        let g:vimtex_view_general_viewer='okular'
+        let g:vimtex_view_general_options_latexmk = '--unique'
+     endif
 
     " Vista {
     let g:vista_fzf_preview = ['right:50%']
