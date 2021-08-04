@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(python
+   '(html
+     python
      clojure
      ;; python
      ;; ----------------------------------------------------------------
@@ -307,6 +308,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file)
   )
 
 (defun dotspacemacs/user-config ()
@@ -316,21 +319,19 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Global Settings
+  ;; ===============
   (setq ns-right-option-modifier 'meta)
   (setq mac-right-option-modifier 'meta)
   (setq-default fill-column 80
                 auto-fill-function 'do-auto-fill)
   (global-undo-tree-mode)
   (evil-set-undo-system 'undo-tree)
+  ;; cancel all with Esc
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-  ;; org-roam
-  ;; (use-package org-roam
-  ;;   :ensure t
-  ;;   :hook
-  ;;   (after-init . org-roam-mode)
-  ;;   :custom
-  ;;   (org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/"))
-  ;; )
+  ;; Org-roam Settings
+  ;; ==================
   (setq org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/"))
   (add-hook 'org-mode-hook 'org-roam-mode)
 
@@ -352,7 +353,17 @@ you should place your code here."
   ;; (use-package org-roam-bibtex
   ;;   :after org-roam
   ;;   :hook (org-roam-mode . org-roam-bibtex-mode))
+
+  ;; Org-agenda Settings
+  ;; ==================
   (setq org-agenda-files '("~/Dropbox/org-files/org"))
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")))
+
 
   (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
   (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
@@ -361,41 +372,4 @@ you should place your code here."
   (setq bibtex-completion-bibliography "~/Dropbox/org-files/bib/references.bib"
         bibtex-completion-library-path "~/Dropbox/org-files/bib/pdfs"
         bibtex-completion-notes-path "~/Dropbox/org-files/bib/helm-bibtex-notes")
-  )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (cider-eval-sexp-fu queue parseedn clojure-mode parseclj a cider yapfify pyvenv pytest py-isort pip-requirements live-py-mode dash-functional helm-pydoc cython-mode pythonic helm-projectile projectile pkg-info auto-compile hl-todo epl helm-ag packed ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-mode-manager helm-make helm-flx helm-descbinds google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bracketed-paste auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(package-selected-packages
-   '(biblio biblio-core org-ref org-roam-bibtex org-roam org-roam-server stickyfunc-enhance pyenv-mode pippel pipenv lsp-python-ms importmagic epc ctable concurrent deferred helm-gtags helm-cscope xcscope ggtags dap-mode posframe lsp-treemacs bui lsp-mode markdown-mode counsel-gtags counsel swiper ivy company-anaconda company blacken anaconda-mode cider-eval-sexp-fu queue parseedn clojure-mode parseclj a cider yapfify pyvenv pytest py-isort pip-requirements live-py-mode dash-functional helm-pydoc cython-mode pythonic helm-projectile projectile pkg-info auto-compile hl-todo epl helm-ag packed ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-mode-manager helm-make helm-flx helm-descbinds google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bracketed-paste auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 )
