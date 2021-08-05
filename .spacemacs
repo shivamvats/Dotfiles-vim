@@ -48,9 +48,9 @@ values."
      (org :variables
        org-enable-roam-support t)
 
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      spell-checking
      syntax-checking
      version-control
@@ -335,10 +335,9 @@ you should place your code here."
   (setq org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/"))
   (add-hook 'org-mode-hook 'org-roam-mode)
 
-  (use-package org-roam-server
-    :ensure t
-    :config
-    (setq org-roam-server-host "127.0.0.1"
+  ;; Org-roam-server Settings
+  ;; ==================
+  (setq org-roam-server-host "127.0.0.1"
           org-roam-server-port 8030
           org-roam-server-authenticate nil
           org-roam-server-export-inline-images t
@@ -348,7 +347,7 @@ you should place your code here."
           org-roam-server-network-arrows nil
           org-roam-server-network-label-truncate t
           org-roam-server-network-label-truncate-length 60
-          org-roam-server-network-label-wrap-length 20))
+          org-roam-server-network-label-wrap-length 20)
 
   ;; (use-package org-roam-bibtex
   ;;   :after org-roam
@@ -364,12 +363,11 @@ you should place your code here."
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")))
 
-
-  (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
-  (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
-  (setq org-ref-default-bibliographhy '("~/Dropbox/org-files/bib/references.bib"))
-  (setq org-ref-pdf-directory "~/Dropbox/org-files/bib/pdfs")
-  (setq bibtex-completion-bibliography "~/Dropbox/org-files/bib/references.bib"
-        bibtex-completion-library-path "~/Dropbox/org-files/bib/pdfs"
-        bibtex-completion-notes-path "~/Dropbox/org-files/bib/helm-bibtex-notes")
+  ;; (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
+  ;; (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
+  ;; (setq org-ref-default-bibliographhy '("~/Dropbox/org-files/bib/references.bib"))
+  ;; (setq org-ref-pdf-directory "~/Dropbox/org-files/bib/pdfs")
+  ;; (setq bibtex-completion-bibliography "~/Dropbox/org-files/bib/references.bib"
+        ;; bibtex-completion-library-path "~/Dropbox/org-files/bib/pdfs"
+        ;; bibtex-completion-notes-path "~/Dropbox/org-files/bib/helm-bibtex-notes")
 )
