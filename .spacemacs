@@ -46,7 +46,11 @@ values."
      git
      markdown
      (org :variables
-       org-enable-roam-support t)
+          org-enable-roam-support t
+          org-roam-v2-ack t
+          ;; autocomplete node link
+          ;; org-roam-complete-everywhere t
+          )
 
      (shell :variables
             shell-default-height 30
@@ -60,8 +64,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-                                      sqlite3
-                                      org-roam-server
+                                      websocket
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -330,24 +333,63 @@ you should place your code here."
   ;; cancel all with Esc
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+  ;; straight.el
+  ;; ===============
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+
+
   ;; Org-roam Settings
   ;; ==================
   (setq org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/"))
-  (add-hook 'org-mode-hook 'org-roam-mode)
+  (bind-key "C-c i" 'org-roam-node-insert)
+  (bind-key "C-c f" 'org-roam-node-find)
+  (bind-key "C-c l" 'org-roam-buffer-toggle)
 
-  ;; Org-roam-server Settings
+  ;; buffer
+  (setq org-roam-mode-section-functions
+        (list #'org-roam-backlinks-section
+              #'org-roam-reflinks-section
+              ;; #'org-roam-unlinked-references-section
+              ))
+
+  (add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+                 (display-buffer-in-direction)
+                 (direction . right)
+                 (window-width . 0.33)
+                 (window-height . fit-window-to-buffer)))
+
+  ;; ;; autocomplete node link
+  ;; ;; (bind-key "C-M-i" 'completion-at-point)
+
+  ;; Org-roam-ui Settings
   ;; ==================
-  (setq org-roam-server-host "127.0.0.1"
-          org-roam-server-port 8030
-          org-roam-server-authenticate nil
-          org-roam-server-export-inline-images t
-          org-roam-server-serve-files nil
-          org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
-          org-roam-server-network-poll t
-          org-roam-server-network-arrows nil
-          org-roam-server-network-label-truncate t
-          org-roam-server-network-label-truncate-length 60
-          org-roam-server-network-label-wrap-length 20)
+
+  (use-package org-roam-ui
+    :straight
+    (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
+    :after org-roam
+    ;; :hook
+    ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+    ;;         a hookable mode anymore, you're advised to pick something yourself
+    ;;         if you don't care about startup time, use
+     :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 
   ;; (use-package org-roam-bibtex
   ;;   :after org-roam
