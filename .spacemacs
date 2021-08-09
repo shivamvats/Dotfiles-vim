@@ -326,12 +326,18 @@ you should place your code here."
   ;; ===============
   (setq ns-right-option-modifier 'meta)
   (setq mac-right-option-modifier 'meta)
-  (setq-default fill-column 80
-                auto-fill-function 'do-auto-fill)
+  (setq-default fill-column 80)
+                ;; auto-fill-function 'do-auto-fill)
+  (global-visual-line-mode t)
+  (global-visual-fill-column-mode t)
   (global-undo-tree-mode)
   (evil-set-undo-system 'undo-tree)
+
   ;; cancel all with Esc
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+  ;; bug fix for org-roam backlinks
+  (global-page-break-lines-mode 0)
 
   ;; straight.el
   ;; ===============
