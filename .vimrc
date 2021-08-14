@@ -618,5 +618,5 @@ call plug#end()
     "
     " nerd-commenter{
        "read _ as /
-        nmap <C-_> <plug>NERDCommenterToggle
+        map <C-_> <plug>NERDCommenterToggle
     " }
