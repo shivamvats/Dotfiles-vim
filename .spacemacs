@@ -48,6 +48,15 @@ values."
      (org :variables
           org-enable-roam-support t
           org-roam-v2-ack t
+          org-roam-capture-templates '(("d" "default" plain "%?"
+                                       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                          "#+title: ${title}\n")
+                                       :unnarrowed t)
+                                       ("b" "book" plain
+                                        "- Authors: %?\n- Written: \n- Read: \n\n* Summary \n\n* Reading Notes \n\n"
+                                        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                           "#+title: ${title}\n")
+                                        :unnarrowed t))
           ;; autocomplete node link
           ;; org-roam-complete-everywhere t
           )
