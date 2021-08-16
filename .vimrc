@@ -320,6 +320,9 @@ call plug#end()
     nnoremap <Leader>S :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
     " Replace the word under cursor in the current line
     nnoremap <Leader>l :s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
+
+    " previous buffer
+    nnoremap <Leader>a <C-^>
 " }
 
 " Functions {
@@ -494,7 +497,7 @@ call plug#end()
 
         "autocmd vimrc FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
         "autocmd FileType cpp nmap <leader>x :call <SID>EditAlternate()<CR>
-        nmap <leader>a :CocCommand clangd.switchSourceHeader<CR>
+        "nmap <leader>a :CocCommand clangd.switchSourceHeader<CR>
         " }
     "
     " ale {
