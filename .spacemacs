@@ -67,6 +67,8 @@ values."
      spell-checking
      syntax-checking
      version-control
+     ;; bibtex support
+     bibtex
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -74,6 +76,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       websocket
+                                      helm-bibtex
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -387,6 +390,11 @@ you should place your code here."
 
   ;; ;; autocomplete node link
   ;; ;; (bind-key "C-M-i" 'completion-at-point)
+
+  ;; bibtex support
+  (setq org-ref-default-bibliography '("~/Dropbox/org-files/references.bib")
+        org-ref-pdf-directory "~/Dropbox/papers"
+        org-ref-bibliography-notes "~/Dropbox/org/paper-notes.org")
 
   ;; Org-roam-ui Settings
   ;; ==================
