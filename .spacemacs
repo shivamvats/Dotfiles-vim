@@ -351,6 +351,13 @@ you should place your code here."
   ;; bug fix for org-roam backlinks
   (global-page-break-lines-mode 0)
 
+  ;; latex preview
+  (setq org-startup-with-latex-preview t)
+  ;;(add-to-list 'org-latex-default-packages-alist '("" "fourier" t) t)
+  ;; increase font size of latex
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+
+
   ;; straight.el
   ;; ===============
   (defvar bootstrap-version)
