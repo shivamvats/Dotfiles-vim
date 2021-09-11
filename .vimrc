@@ -430,7 +430,7 @@ call plug#end()
         " run if updating coc
         ":call coc#util#install()
         let g:coc_global_extensions = [
-            "\ 'coc-snippets',
+            \ 'coc-snippets',
             \ 'coc-pairs',
             \ 'coc-pyright',
             \ 'coc-clangd',
@@ -443,23 +443,11 @@ call plug#end()
             \ ]
 
         " use <tab> for trigger completion and navigate to the next complete item
-        function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-        endfunction
 
-        inoremap <silent><expr> <Tab>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<Tab>" :
-            \ coc#refresh()
+        "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-        inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-        inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-        " Use <c-space> to trigger completion.
-        inoremap <silent><expr> <c-space> coc#refresh()
-
-        " Snippets
+        " coc-snippets
         inoremap <silent><expr> <TAB>
             \ pumvisible() ? coc#_select_confirm() :
             \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
