@@ -488,6 +488,12 @@ call plug#end()
         "nmap <leader>a :CocCommand clangd.switchSourceHeader<CR>
         " }
     "
+    " ultisnips {
+        " expand if menu open, else newline
+        let g:UltiSnipsExpandTrigger = "<nop>"
+        inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<CR>"
+    " }
+
     " ale {
     let g:ale_linters = {'python' : ['flake8']}
     let g:ale_fixers = {'python' : ['black', 'autopep8', 'isort']}
