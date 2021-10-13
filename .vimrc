@@ -186,7 +186,7 @@ call plug#end()
     set hlsearch
     set foldmethod=syntax
     set foldnestmax=3
-    autocmd bufreadpre *.tex setlocal textwidth=0
+    autocmd bufreadpre *.tex setlocal formatoptions-=t
 
     let g:tex_conceal=""
 
@@ -406,7 +406,7 @@ call plug#end()
     "}
 
     " Fugitive {
-        nmap <Leader>st :Gstatus<CR>
+        nmap <Leader>st :Git<CR>
         nmap <Leader>df :Gdiff<CR>
         nmap <Leader>gw :Gwrite<CR>
         nmap <Leader>gr :Gread<CR>
