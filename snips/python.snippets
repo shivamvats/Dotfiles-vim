@@ -22,7 +22,7 @@ snippet comment_header "Comment the header of a section" b
 $0
 endsnippet
 
-snippet comment_subhead"Comment the header of a sub-section" b
+snippet comment_subhead "Comment the header of a sub-section" b
 # $1
 #---------
 endsnippet
@@ -57,6 +57,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 endsnippet
 
+snippet np "import np" b
+import numpy as np
+endsnippet
+
 snippet hydra_main "Hydra main" b
 @hydra.main(config_path="../$1cfg", config_name="$2.yaml")
 def main(cfg):
@@ -65,6 +69,14 @@ def main(cfg):
 
 if __name__ == "__main__":
 	main()
+endsnippet
+
+snippet def "Function" b
+def $1($0):
+endsnippet
+
+snippet def "Class method" b
+def $1(self, $0):
 endsnippet
 
 snippet pdb "ipdb" b

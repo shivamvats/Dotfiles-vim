@@ -14,7 +14,7 @@
     "suggest.autoTrigger": "always",
 
     "list.source.grep.command": "ag",
-    "list.source.grep.args": ["-f"],
+    "list.source.grep.args": ["-folder"],
     "list.source.grep.excludePatterns": ["tags"],
 
     "list.normalMappings": {
