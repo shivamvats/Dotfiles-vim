@@ -551,7 +551,7 @@ call plug#end()
     return get(b:, 'vista_nearest_method_or_function', '')
     endfunction
 
-    set statusline^=%{NearestMethodOrFunction()}
+    "set statusline^=%{NearestMethodOrFunction()}
 
     " By default vista.vim never run if you don't call it explicitly.
     "
@@ -617,3 +617,10 @@ call plug#end()
        "read _ as /
         map <C-_> <plug>NERDCommenterToggle
     " }
+    " ctrlp {
+        " search for filename by default
+        let g:ctrlp_by_filename = 1
+        let g:ctrlp_switch_buffer = 'et' " open existing file in a new pane
+        " ignore files in gitignore
+        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+    "}
