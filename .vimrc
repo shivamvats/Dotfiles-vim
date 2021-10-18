@@ -63,6 +63,7 @@ Plug 'unblevable/quick-scope'
 " Seamless navigation bw vim and tmux
 " Didn't work
 "Plug 'christoomey/vim-tmux-navigator'
+Plug 'mhinz/vim-grepper'
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -479,7 +480,7 @@ call plug#end()
 
         "coc-list
         "nmap <Leader>ag <Plug>(coc-list grep)
-        nmap <Leader>ag :CocList grep<CR>
+        "nmap <Leader>ag :CocList grep<CR>
 
         autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -624,3 +625,8 @@ call plug#end()
         " ignore files in gitignore
         let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
     "}
+    " vimgrep {
+        runtime plugin/grepper.vim " init grepper dict
+        let g:grepper.dir = 'repo,cwd' " search in whole git repo, cwd if that fails
+        nnoremap <leader>ag :Grepper -tool ag<cr>
+    " }
