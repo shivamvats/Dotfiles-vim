@@ -46,8 +46,24 @@ values."
      git
      markdown
      (org :variables
+          ;; journal
+          ;; org-enable-org-journal-support t
+          ;; org-journal-dir "~/Dropbox/org-files/journal/"
+          ;; org-journal-file-format "%Y-%m-%d"
+          ;; org-journal-date-prefix "#+TITLE: "
+          ;; org-journal-date-format "%A, %B %d %Y"
+          ;; org-journal-time-prefix "* "
+          ;; org-journal-time-format ""
+          ;; org-journal-file-type 'weekly
+          ;; org-journal-start-on-weekday 6 ;; Saturday
+
+          ;; capture
+          org-default-notes-file "~/Dropbox/org-files/org/wishlist.org"
+
+          ;; roam
           org-enable-roam-support t
           org-roam-v2-ack t
+          org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/")
           org-roam-capture-templates '(("d" "default" plain "%?"
                                        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                                                           "#+title: ${title}\n")
@@ -325,6 +341,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file)
+  (fset 'evil-redirect-digit-argument 'ignore) ;; before evil-org loaded
   )
 
 (defun dotspacemacs/user-config ()
@@ -334,6 +351,10 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  (add-to-list 'evil-digit-bound-motions 'evil-org-beginning-of-line)
+  (evil-define-key 'motion 'evil-org-mode (kbd "0") 'evil-org-beginning-of-line)
+
   ;; Global Settings
   ;; ===============
   (setq ns-right-option-modifier 'meta)
@@ -344,6 +365,10 @@ you should place your code here."
   (global-visual-fill-column-mode t)
   (global-undo-tree-mode)
   (evil-set-undo-system 'undo-tree)
+
+  ;; Custom date format
+  (setq-default org-display-custom-times t)
+  (setq org-time-stamp-custom-formats '("<%a %b %e %Y>" . "<%a %b %e %Y %H:%M>"))
 
   ;; cancel all with Esc
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -376,7 +401,6 @@ you should place your code here."
 
   ;; Org-roam Settings
   ;; ==================
-  (setq org-roam-directory (file-truename "~/Dropbox/org-files/org-roam/"))
   (bind-key "C-c i" 'org-roam-node-insert)
   (bind-key "C-c f" 'org-roam-node-find)
   (bind-key "C-c l" 'org-roam-buffer-toggle)
@@ -434,6 +458,20 @@ you should place your code here."
 
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")))
+
+  ;; Org-capture
+  ;; goto main file
+  (global-set-key (kbd "C-c o") 
+                  (lambda () (interactive) (find-file "~/Dropbox/org-files/org/wishlist.org")))
+  (add-to-list 'org-capture-templates
+               '("d" "Daily Review"  entry
+                 (file+headline "~/Dropbox/org-files/org/wishlist.org" "Daily")
+                 "** Review %t \n %?" :empty-lines 1))
+
+  (add-to-list 'org-capture-templates
+               '("w" "Weekly Review"  entry
+                 (file+headline "~/Dropbox/org-files/org/wishlist.org" "Weekly")
+                 "** Review %t \n %?" :empty-lines 1))
 
   ;; (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
   ;; (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
