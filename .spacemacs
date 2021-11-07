@@ -365,6 +365,8 @@ you should place your code here."
   (global-visual-fill-column-mode t)
   (global-undo-tree-mode)
   (evil-set-undo-system 'undo-tree)
+  ;; Ctrl-P
+  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
 
   ;; Custom date format
   (setq-default org-display-custom-times t)
