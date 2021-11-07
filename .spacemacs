@@ -466,12 +466,12 @@ you should place your code here."
   (add-to-list 'org-capture-templates
                '("d" "Daily Review"  entry
                  (file+headline "~/Dropbox/org-files/org/wishlist.org" "Daily")
-                 "** Review %t \n %?" :empty-lines 1))
+                 "** Review %t \n %?" :empty-lines 1 :prepend t))
 
   (add-to-list 'org-capture-templates
                '("w" "Weekly Review"  entry
                  (file+headline "~/Dropbox/org-files/org/wishlist.org" "Weekly")
-                 "** Review %t \n %?" :empty-lines 1))
+                 "** Review %t \n %?" :empty-lines 1 :prepend t))
 
   ;; (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
   ;; (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
