@@ -34,6 +34,7 @@ Plug 'mg979/vim-visual-multi'
 "Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'dense-analysis/ale'
 "Plug 'yssl/QFEnter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kshenoy/vim-signature'
@@ -185,7 +186,7 @@ call plug#end()
     set tw=79
     syntax on
     set hlsearch
-    set foldmethod=syntax
+    "set foldmethod=syntax
     set foldnestmax=3
     autocmd bufreadpre *.tex setlocal formatoptions-=t
 
@@ -460,7 +461,10 @@ call plug#end()
         return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
 
-        let g:coc_snippet_next = '<tab>'
+        "let g:coc_snippet_next = '<tab>'
+        let g:coc_snippet_next = '<c-j>'
+        let g:coc_snippet_prev = '<c-k>'
+        imap <C-j> <Plug>(coc-snippets-expand-jump)
 
         nnoremap <silent> K :call <SID>show_documentation()<CR>
         function! s:show_documentation()
@@ -491,8 +495,8 @@ call plug#end()
     "
     " ultisnips {
         " expand if menu open, else newline
-        let g:UltiSnipsExpandTrigger = "<nop>"
-        inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<CR>"
+        "let g:UltiSnipsExpandTrigger = "<nop>"
+        "inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<CR>"
     " }
 
     " ale {
@@ -629,4 +633,8 @@ call plug#end()
         runtime plugin/grepper.vim " init grepper dict
         let g:grepper.dir = 'repo,cwd' " search in whole git repo, cwd if that fails
         nnoremap <leader>ag :Grepper -tool ag<cr>
+    " }
+    " nvim-treesitter{
+        set foldmethod=expr
+        set foldexpr=nvim_treesitter#foldexpr()
     " }
