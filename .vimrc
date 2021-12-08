@@ -53,7 +53,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'jiangmiao/auto-pairs'
 "Plug 'tmsvg/pear-tree'
 "Plug 'Valloric/MatchTagAlways'
-"Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'liuchengxu/vista.vim'
 Plug 'Yggdroot/indentLine'
 "Plug 'jistr/vim-nerdtree-tabs'
@@ -150,6 +150,7 @@ call plug#end()
     set backspace=2
     set ignorecase
     set smartcase
+    " doesn't work on its own
     set autoread
     set showmatch
     set smarttab
@@ -168,6 +169,11 @@ call plug#end()
     "set clipboard+=unnamedplus
     set scrolloff=10
     set foldenable
+
+    " autoread on focus
+    au FocusGained,BufEnter * :silent! !
+    " autosave on losing focus
+    au FocusLost,WinLeave * :silent! w
 " }
 
 " Formatting {
@@ -325,6 +331,15 @@ call plug#end()
 
     " previous buffer
     nnoremap <Leader>a <C-^>
+
+    " Manage TODO and FIXME
+    nnoremap to :vimgrep TODO % <CR>
+    nnoremap fix :vimgrep FIXME % <CR>
+
+    " For quick tab switching
+    noremap <leader>1 1gt
+    noremap <leader>2 2gt
+    noremap <leader>3 3gt
 " }
 
 " Functions {
@@ -544,6 +559,7 @@ call plug#end()
         let g:vimtex_view_general_viewer='okular'
         let g:vimtex_view_general_options_latexmk = '--unique'
      endif
+     " }
 
     " Vista {
     let g:vista_fzf_preview = ['right:50%']
@@ -634,7 +650,11 @@ call plug#end()
         let g:grepper.dir = 'repo,cwd' " search in whole git repo, cwd if that fails
         nnoremap <leader>ag :Grepper -tool ag<cr>
     " }
-    " nvim-treesitter{
+    " tagbar {
+        nmap <F8> :TagbarToggle<CR>
+    " }
+    " nvim-treesitter {
         set foldmethod=expr
         set foldexpr=nvim_treesitter#foldexpr()
     " }
+" }
