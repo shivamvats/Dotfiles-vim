@@ -54,7 +54,8 @@ values."
           ;; org-journal-date-format "%A, %B %d %Y"
           ;; org-journal-time-prefix "* "
           ;; org-journal-time-format ""
-          ;; org-journal-file-type 'weekly
+          ;; org-journal-file-type 'yearly
+          ;; org-journal-prefix-key "C-c j"
           ;; org-journal-start-on-weekday 6 ;; Saturday
 
           ;; capture
@@ -457,10 +458,35 @@ you should place your code here."
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
+  (setq org-agenda-skip-deadline-if-done t)
+  (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")))
+        '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "|" "DONE(d!)" "CANC(c!)" "INCOMPLETE(i!)")))
 
+  (setq org-columns-default-format "#+COLUMNS: %75ITEM %TODO %3PRIORITY %TAGS")
+
+  ;; Note: org-agenda-skip-entry-if calls org-agenda-skip-if which has better doc
+  ;; Detailed explanation: https://orgmode.org/worg/org-tutorials/advanced-searching.html
+  (setq org-agenda-custom-commands
+        '(("c" "Custom View"
+           (
+            (tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled 'todo 'done))
+                   (org-agenda-overriding-header "\nScheduled High-priority Tasks:")))
+            (tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                   (org-agenda-overriding-header "\nHigh-priority Tasks:")))
+            ;; (todo "WIP"
+                  ;; ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled))))
+            (agenda "" ((org-agenda-span 1)))
+            ;; (alltodo "")
+            )
+           ))
+        )
+
+  ;; '(("c" "Columnn View" (org-agenda-columns) )
+  
   ;; Org-capture
   ;; goto main file
   (global-set-key (kbd "C-c o") 
