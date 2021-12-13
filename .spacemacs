@@ -464,16 +464,52 @@ you should place your code here."
   ;; Org-capture
   ;; goto main file
   (global-set-key (kbd "C-c o") 
-                  (lambda () (interactive) (find-file "~/Dropbox/org-files/org/wishlist.org")))
+                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/wishlist.org")))
+
+  (global-set-key (kbd "C-c w") 
+                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/weekly.org")))
+
+  (global-set-key (kbd "C-c r") 
+                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/recovery_skills.org")))
+
+  (global-set-key (kbd "C-c t") 
+                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/research_thoughts.org")))
+
+  (global-set-key (kbd "C-c g") 
+                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/medium-long-term-goals.org")))
+
+  ;; refile
+  (setq org-refile-targets '(("wishlist.org" :maxlevel . 4)
+                             ("meetings.org" :maxlevel . 3)))
+
   (add-to-list 'org-capture-templates
-               '("d" "Daily Review"  entry
-                 (file+headline "~/Dropbox/org-files/org/wishlist.org" "Daily")
-                 "** Review %t \n %?" :empty-lines 1 :prepend t))
+               '("p" "Project Note"  entry (file+datetree "~/Dropbox/org-files/org/recovery_skills.org")
+                 "* %?" :empty-lines 1 :prepend t)) ;; %u : inactive timestamp
+
+  (add-to-list 'org-capture-templates
+               '("n" "Note"  entry
+                 (file+datetree "~/Dropbox/org-files/org/wishlist.org")
+                 "* %?" :empty-lines 1 :prepend t)) ;; %u : inactive timestamp
+
+  (add-to-list 'org-capture-templates
+               '("t" "Todo"  entry
+                 (file+datetree"~/Dropbox/org-files/org/wishlist.org")
+                 "* TODO %?" :empty-lines 1 :prepend t))
 
   (add-to-list 'org-capture-templates
                '("w" "Weekly Review"  entry
-                 (file+headline "~/Dropbox/org-files/org/wishlist.org" "Weekly")
-                 "** Review %t \n %?" :empty-lines 1 :prepend t))
+                 (file+datetree "~/Dropbox/org-files/org/weekly.org")
+                 "* Review \n%?" :empty-lines 1 :tree-type week))
+
+  (add-to-list 'org-capture-templates
+               '("m" "Meeting"  entry
+                 (file+datetree"~/Dropbox/org-files/org/meetings.org" )
+                 "* %?" :empty-lines 1 :prepend t))
+
+  (add-to-list 'org-capture-templates
+               '("r" "Research Thought"  entry (file"~/Dropbox/org-files/org/research_thoughts.org" )
+                 "*** %u %?" :empty-lines 1 :prepend t))
+
 
   ;; (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
   ;; (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
