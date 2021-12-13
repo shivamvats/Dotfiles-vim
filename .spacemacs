@@ -94,6 +94,8 @@ values."
    dotspacemacs-additional-packages '(
                                       websocket
                                       helm-bibtex
+                                      org-reverse-datetree
+                                      org-super-agenda
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -353,8 +355,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  (add-to-list 'evil-digit-bound-motions 'evil-org-beginning-of-line)
-  (evil-define-key 'motion 'evil-org-mode (kbd "0") 'evil-org-beginning-of-line)
+  ;; (add-to-list 'evil-digit-bound-motions 'evil-org-beginning-of-line)
+  ;; (evil-define-key 'motion 'evil-org-mode (kbd "0") 'evil-org-beginning-of-line)
 
   ;; Global Settings
   ;; ===============
@@ -368,6 +370,10 @@ you should place your code here."
   (evil-set-undo-system 'undo-tree)
   ;; Ctrl-P
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+
+  ;; helm
+  (global-set-key (kbd "C-c C-f") 'helm-for-files)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
   ;; Custom date format
   (setq-default org-display-custom-times t)
@@ -401,6 +407,10 @@ you should place your code here."
         (eval-print-last-sexp)))
     (load bootstrap-file nil 'nomessage))
 
+  ;; Org
+  ;;=====
+  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+  (defun org-clocking-buffer (&rest _))
 
   ;; Org-roam Settings
   ;; ==================
