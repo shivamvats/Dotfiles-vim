@@ -220,7 +220,6 @@ call plug#end()
         autocmd BufRead,BufNewFile *.md setlocal spell
     augroup END
 
-    set spell
     autocmd BufEnter * silent! lcd %:p:h
     set formatprg=par
 
@@ -444,7 +443,7 @@ call plug#end()
     " }
 
     " CoC {
-        "let g:node_client_debug = 1
+        let g:node_client_debug = 0
         " run if updating coc
         ":call coc#util#install()
         let g:coc_global_extensions = [
@@ -456,8 +455,8 @@ call plug#end()
             \ 'coc-dictionary',
             \ 'coc-tag',
             \ 'coc-word',
-            \ 'coc-syntax',
-            \ 'coc-highlight',
+            "\ 'coc-syntax',
+            "\ 'coc-highlight',
             \ ]
 
         " use <tab> for trigger completion and navigate to the next complete item
@@ -608,7 +607,7 @@ call plug#end()
         nmap <Leader>m <Plug>ToggleMarkbar
         let g:markbar_enable_peekaboo = v:false
         set shada+=!
-
+        let g:markbar_persist_mark_names = v:false
     " }
     "
     " pydoc {
