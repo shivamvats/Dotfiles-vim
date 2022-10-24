@@ -190,6 +190,7 @@ call plug#end()
     set wrap
     set formatoptions+=t
     set tw=79
+    set colorcolumn=80
     syntax on
     set hlsearch
     "set foldmethod=syntax
@@ -201,7 +202,7 @@ call plug#end()
     augroup vimrcEx
         autocmd!
 
-        autocmd FileType text setlocal spell
+        autocmd FileType text setlocal spell tw=0 linebreak nolist
         autocmd FileType haskell,puppet,ruby,yml,html,yaml,urdf setlocal expandtab shiftwidth=2 softtabstop=2
 
         " When editing a file, always jump to the last known cursor position.
@@ -443,7 +444,7 @@ call plug#end()
     " }
 
     " CoC {
-        let g:node_client_debug = 1
+        "let g:node_client_debug = 1
         " run if updating coc
         ":call coc#util#install()
         let g:coc_global_extensions = [
@@ -606,6 +607,8 @@ call plug#end()
     " vim-markbar {
         nmap <Leader>m <Plug>ToggleMarkbar
         let g:markbar_enable_peekaboo = v:false
+        set shada+=!
+
     " }
     "
     " pydoc {
