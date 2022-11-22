@@ -465,16 +465,19 @@ call plug#end()
         "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
         " coc-snippets
-        inoremap <silent><expr> <TAB>
-            \ pumvisible() ? coc#_select_confirm() :
-            \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
+        "inoremap <silent><expr> <TAB>
+            "\ pumvisible() ? coc#_select_confirm() :
+            "\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+            "\ <SID>check_back_space() ? "\<TAB>" :
+            "\ coc#refresh()
 
         function! s:check_back_space() abort
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~# '\s'
         endfunction
+
+        "inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                                    "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
         "let g:coc_snippet_next = '<tab>'
         let g:coc_snippet_next = '<c-j>'

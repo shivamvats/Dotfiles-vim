@@ -1,7 +1,7 @@
 {
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".ctrlp", ".git", ".hg", ".projections.json"],
-    "diagnostic.displayByAle": "false",
+    "diagnostic.displayByAle": "true",
     "diagnostic.enable": "true",
 
     "python.formatting.provider" : "black",
@@ -12,6 +12,7 @@
     "suggest.detailMaxLength": "30",
     "suggest.labelMaxLength": "15",
     "suggest.autoTrigger": "always",
+    "suggest.noselect": "true",
 
     "list.source.grep.command": "ag",
     "list.source.grep.args": ["-folder"],
