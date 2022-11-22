@@ -58,6 +58,10 @@ values."
           ;; org-journal-prefix-key "C-c j"
           ;; org-journal-start-on-weekday 6 ;; Saturday
 
+          org-startup-with-inline-images t
+          org-startup-indented t
+          org-indent-mode t
+
           ;; capture
           org-default-notes-file "~/Dropbox/org-files/org/wishlist.org"
 
@@ -100,7 +104,9 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(evil-ediff ;; not on melpa
+                                    string-edit ;; not on melpa
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -362,18 +368,23 @@ you should place your code here."
   ;; ===============
   (setq ns-right-option-modifier 'meta)
   (setq mac-right-option-modifier 'meta)
-  (setq-default fill-column 80)
-                ;; auto-fill-function 'do-auto-fill)
+  (setq-default fill-column 120)
+  ;; (auto-fill-function 'do-auto-fill)
   (global-visual-line-mode t)
   (global-visual-fill-column-mode t)
   (global-undo-tree-mode)
   (evil-set-undo-system 'undo-tree)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
   ;; Ctrl-P
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+  (define-key evil-normal-state-map (kbd "C-f") 'helm-multi-files)
 
   ;; helm
-  (global-set-key (kbd "C-c C-f") 'helm-for-files)
+  ;; (global-set-key (kbd "C-c C-f") 'helm-for-files)
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c"))
 
   ;; Custom date format
   (setq-default org-display-custom-times t)
@@ -389,8 +400,8 @@ you should place your code here."
   (setq org-startup-with-latex-preview t)
   ;;(add-to-list 'org-latex-default-packages-alist '("" "fourier" t) t)
   ;; increase font size of latex
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
-
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.3))
+  ;; (setq org-preview-latex-default-process 'dvisvgm) ;No blur when scaling
 
   ;; straight.el
   ;; ===============
@@ -411,6 +422,11 @@ you should place your code here."
   ;;=====
   (add-hook 'auto-save-hook 'org-save-all-org-buffers)
   (defun org-clocking-buffer (&rest _))
+  (org-babel-do-load-languages 'org-babel-load-languages '((latex . t)))
+  (setq org-hide-emphasis-markers t)
+  (global-set-key (kbd "C-x C-o") (lambda () (interactive)
+                        (cd "~/Dropbox/org-files/org")
+                        (call-interactively 'helm-find-files)))
 
   ;; Org-roam Settings
   ;; ==================
@@ -464,7 +480,7 @@ you should place your code here."
 
   ;; Org-agenda Settings
   ;; ==================
-  (setq org-agenda-files '("~/Dropbox/org-files/org"))
+  (setq org-agenda-files (directory-files-recursively "~/Dropbox/org-files/org" "\\.org$"))
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
@@ -481,23 +497,29 @@ you should place your code here."
   (setq org-agenda-custom-commands
         '(("c" "Custom View"
            (
-            (tags "PRIORITY=\"A\""
-                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled 'todo 'done))
+            (tags-todo "+PRIORITY=\"A\"+SCHEDULED<\"<+1d>\""
+                  ((org-agenda-span 'day)
+                   (org-agenda-entry-types '(:scheduled))
+                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled 'todo 'done))
                    (org-agenda-overriding-header "\nScheduled High-priority Tasks:")))
-            (tags "PRIORITY=\"A\""
-                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                   (org-agenda-overriding-header "\nHigh-priority Tasks:")))
+            (tags-todo "+PRIORITY=\"B\"+SCHEDULED<\"<+1d>\""
+                       ((org-agenda-span 'day)
+                        (org-agenda-entry-types '(:scheduled))
+                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled 'todo 'done))
+                        (org-agenda-overriding-header "\nScheduled Medium-priority Tasks:")))
             ;; (todo "WIP"
                   ;; ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled))))
             (agenda "" ((org-agenda-span 1)))
             ;; (alltodo "")
-            )
-           ))
-        )
+
+           )
+         ))
+   )
 
   ;; '(("c" "Columnn View" (org-agenda-columns) )
   
   ;; Org-capture
+
   ;; goto main file
   (global-set-key (kbd "C-c o") 
                   (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/wishlist.org")))
@@ -505,9 +527,14 @@ you should place your code here."
   (global-set-key (kbd "C-c w") 
                   (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/weekly.org")))
 
-  (global-set-key (kbd "C-c r") 
-                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/recovery_skills.org")))
+  (global-set-key (kbd "C-c m") 
+                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/medium-long-term-goals.org")))
 
+  ;; research project
+  (global-set-key (kbd "C-c r") 
+                  (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/projects/belief_space_recovery_skills.org")))
+
+  ;; thoughts
   (global-set-key (kbd "C-c t") 
                   (lambda () (interactive) (org-end-of-subtree) (find-file "~/Dropbox/org-files/org/research_thoughts.org")))
 
@@ -517,10 +544,6 @@ you should place your code here."
   ;; refile
   (setq org-refile-targets '(("wishlist.org" :maxlevel . 4)
                              ("meetings.org" :maxlevel . 3)))
-
-  (add-to-list 'org-capture-templates
-               '("p" "Project Note"  entry (file+datetree "~/Dropbox/org-files/org/recovery_skills.org")
-                 "* %?" :empty-lines 1 :prepend t)) ;; %u : inactive timestamp
 
   (add-to-list 'org-capture-templates
                '("n" "Note"  entry
@@ -543,9 +566,25 @@ you should place your code here."
                  "* %?" :empty-lines 1 :prepend t))
 
   (add-to-list 'org-capture-templates
-               '("r" "Research Thought"  entry (file"~/Dropbox/org-files/org/research_thoughts.org" )
-                 "*** %u %?" :empty-lines 1 :prepend t))
+               '("k" "Research Talk"  entry
+                 (file+datetree"~/Dropbox/org-files/org/research_talks.org" )
+                 "* %?" :empty-lines 1 :prepend t))
 
+  (add-to-list 'org-capture-templates
+               '("r" "Research Project"  entry (file+datetree "~/Dropbox/org-files/org/projects/belief_space_recovery_skills.org")
+                 "* %?" :empty-lines 1 :prepend t)) ;; %u : inactive timestamp
+
+  ;; (add-to-list 'org-capture-templates
+  ;;              '("l" "Recovery Learning"  entry (file+datetree "~/Dropbox/org-files/org/projects/recovery_skills.org")
+  ;;                "* %?" :empty-lines 1 :prepend t)) ;; %u : inactive timestamp
+
+  (add-to-list 'org-capture-templates
+               '("R" "Research Thought"  entry (file+datetree "~/Dropbox/org-files/org/research_thoughts.org" )
+                 "* %?" :empty-lines 1 :prepend t))
+
+  ;; (add-to-list 'org-capture-templates
+  ;;              '("T" "PhD Thesis"  entry (file+datetree "~/Dropbox/org-files/org/phd_thesis.org")
+  ;;                "* %?" :empty-lines 1 :prepend t)) ;; %u : inactive timestamp
 
   ;; (setq reftex-default-bibliography '("~/Dropbox/org-files/bib/references.bib"))
   ;; (setq org-ref-bibliography-notes "~/Dropbox/org-files/bib/notes.org")
