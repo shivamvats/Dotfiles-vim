@@ -648,7 +648,9 @@ call plug#end()
         let g:ctrlp_by_filename = 1
         let g:ctrlp_switch_buffer = 'et' " open existing file in a new pane
         " ignore files in gitignore
-        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+        " from https://github.com/kien/ctrlp.vim/issues/174#issuecomment-917665688
+        " also shows files in submodules
+        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -c --exclude-standard --recurse-submodules | grep -x -v "$( git ls-files -d --exclude-standard )" ; git ls-files -o --exclude-standard', 'find %s -type f']
     "}
     " vimgrep {
         runtime plugin/grepper.vim " init grepper dict
