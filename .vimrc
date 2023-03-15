@@ -404,6 +404,9 @@ call plug#end()
         \ 'ctrl-s': 'split',
         \ 'ctrl-v': 'vsplit' }
 
+        " horizontal split for preview
+        let g:fzf_preview_window = ['up,50%', 'ctrl-/']
+
         " AgIn: Start ag in the specified directory
         "
         " e.g.
