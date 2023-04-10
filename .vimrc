@@ -341,6 +341,10 @@ call plug#end()
     noremap <leader>1 1gt
     noremap <leader>2 2gt
     noremap <leader>3 3gt
+
+    "close quick-fix window
+    " especially useful for tex
+    noremap <leader>cc :cclose<CR>
 " }
 
 " Functions {
@@ -622,7 +626,7 @@ call plug#end()
     " }
     "
     " indentline {
-        let g:indentLine_setConceal=2
+        let g:indentLine_setConceal=2 "disable with 0, set to 2 to enable
         let g:indentLine_concealcursor='nv'
         autocmd FileType tex :IndentLinesDisable
     " }
