@@ -35,6 +35,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'dense-analysis/ale'
 "Plug 'yssl/QFEnter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'github/copilot.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'kshenoy/vim-signature'
