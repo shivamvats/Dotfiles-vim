@@ -399,7 +399,9 @@ call plug#end()
         nnoremap <C-b> :Buffers<CR>
         nnoremap <C-m> :Marks<CR>
         nnoremap <C-s> :Ag<CR>
-        nnoremap <C-h> : History<CR>
+        nnoremap <C-h> :History<CR>
+        nnoremap <C-f> :ProjectFiles<CR>
+        nnoremap <C-p> :ProjectFiles<CR>
 
         " Quit fzf wit Esc
         autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
@@ -411,6 +413,12 @@ call plug#end()
 
         " horizontal split for preview
         let g:fzf_preview_window = ['up,50%', 'ctrl-/']
+
+        function! s:find_git_root()
+        return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+        endfunction
+
+        command! ProjectFiles execute 'Files' s:find_git_root()
 
         " AgIn: Start ag in the specified directory
         "
