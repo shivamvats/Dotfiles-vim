@@ -2,6 +2,8 @@ call plug#begin('~/.vim/plugged')
 "
 " always enabled
 Plug 'flazz/vim-colorschemes'
+" works with nvim upgrade
+Plug 'lifepillar/vim-solarized8', {'branch': 'neovim'}
 Plug 'tpope/vim-fugitive'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -122,7 +124,7 @@ call plug#end()
         " Always switch to the current file directory
     endif
 
-    colorscheme solarized
+    colorscheme solarized8
     set bg=light
 
 
