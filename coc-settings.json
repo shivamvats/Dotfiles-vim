@@ -4,10 +4,6 @@
     "diagnostic.displayByAle": "true",
     "diagnostic.enable": "true",
 
-    "python.formatting.provider" : "black",
-    "python.jediEnabled": "false",
-    "python.linting.enabled": "true",
-
     "suggest.maxPreviewWidth": "45",
     "suggest.detailMaxLength": "30",
     "suggest.labelMaxLength": "15",

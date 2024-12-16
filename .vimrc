@@ -19,7 +19,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdcommenter'
 " Default Snippets
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'alvan/closetag.vim'
 Plug 'Lokaltog/vim-easymotion'
@@ -68,6 +68,11 @@ Plug 'unblevable/quick-scope'
 " Didn't work
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-grepper'
+" maybe I'll try this one day. For now I will use marks
+" ---
+"Plug 'nvim-tree/nvim-web-devicons'
+"Plug 'cbochs/grapple.nvim'
+"---
 
 " on-demand loading
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -77,6 +82,11 @@ Plug 'chrisbra/NrrwRgn', {'on': 'NrrwRgn'}
 Plug 'mtth/scratch.vim', {'on': 'Scratch'}
 Plug 'mattn/gist-vim', {'on': 'Gist'}
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+
+Plug 'zbirenbaum/copilot.lua'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'main' }
+
 
 " filetype specific plugins
 Plug 'lervag/vimtex', {'for': ['tex']}
@@ -124,8 +134,10 @@ call plug#end()
         " Always switch to the current file directory
     endif
 
-    colorscheme solarized8
+    set notermguicolors
     set bg=light
+    "colorscheme solarized8
+    colorscheme solarized
 
 
     if has('cmdline_info')
@@ -193,7 +205,7 @@ call plug#end()
     set wrap
     set formatoptions+=t
     set tw=79
-    set colorcolumn=80
+    "set colorcolumn=80
     syntax on
     set hlsearch
     "set foldmethod=syntax
@@ -346,7 +358,7 @@ call plug#end()
 
     "close quick-fix window
     " especially useful for tex
-    noremap <leader>cc :cclose<CR>
+    "noremap <leader>cc :cclose<CR>
 " }
 
 " Functions {
@@ -477,10 +489,18 @@ call plug#end()
             "\ 'coc-highlight',
             \ ]
 
-        " use <tab> for trigger completion and navigate to the next complete item
+        " use <tab> to trigger completion and navigate to the next complete item
+        "function! CheckBackspace() abort
+        "let col = col('.') - 1
+        "return !col || getline('.')[col - 1]  =~# '\s'
+        "endfunction
 
-        "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-        "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+        "inoremap <silent><expr> <Tab>
+            "\ coc#pum#visible() ? coc#pum#next(1) :
+            "\ CheckBackspace() ? "\<Tab>" :
+            "\ coc#refresh()
+
+        "inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
         " coc-snippets
         "inoremap <silent><expr> <TAB>
@@ -488,16 +508,16 @@ call plug#end()
             "\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
             "\ <SID>check_back_space() ? "\<TAB>" :
             "\ coc#refresh()
-
-        function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-        endfunction
+            "\
+            "
+        "function! s:check_back_space() abort
+        "let col = col('.') - 1
+        "return !col || getline('.')[col - 1]  =~# '\s'
+        "endfunction
 
         "inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                                     "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-        "let g:coc_snippet_next = '<tab>'
         let g:coc_snippet_next = '<c-j>'
         let g:coc_snippet_prev = '<c-k>'
         imap <C-j> <Plug>(coc-snippets-expand-jump)
@@ -682,4 +702,9 @@ call plug#end()
         set foldmethod=expr
         set foldexpr=nvim_treesitter#foldexpr()
     " }
-" }
+    " copilotchat {
+       nnoremap <leader>cc :CopilotChat
+    " }
+
+"}
+call plug#end()

@@ -90,3 +90,9 @@ endsnippet
 snippet ipython
 from IPython import embed; embed();
 endsnippet
+
+snippet print_attrs
+from pprint import pprint
+pprint(vars($0))
+import ipdb; ipdb.set_trace();
+endsnippet
