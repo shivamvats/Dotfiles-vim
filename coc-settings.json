@@ -4,6 +4,8 @@
     "diagnostic.displayByAle": "true",
     "diagnostic.enable": "true",
 
+    "python.pythonPath":  "~/.vim/pyright_conda.sh",
+
     "suggest.maxPreviewWidth": "45",
     "suggest.detailMaxLength": "30",
     "suggest.labelMaxLength": "15",
@@ -20,20 +22,11 @@
     "s": "action:split",
     "d": "expr:GetDeleteAction"
     },
+
     "list.insertMappings": {
     "<C-t>": "action:tabe",
     "<C-w>": "command:wincmd k"
     },
 
-    "clangd.enabled": "true",
-
-    "languageserver": {
-    "julia": {
-        "command": "/usr/local/bin/julia",
-        "args" : ["--startup-file=no", "--history-file=no", "-e",
-        "using LanguageServer;\n       using Pkg;\n       import StaticLint;\n       import SymbolServer;\n       env_path = dirname(Pkg.Types.Context().env.project_file);\n       debug = false;\n       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\");\n       server.runlinter = true;\n       run(server);" ],
-        "filetypes": ["julia", "jl"]
-        }
-    },
-    "clangd.path": "/home/aries/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
+    "snippets.ultisnips.pythonPrompt": false,
 }

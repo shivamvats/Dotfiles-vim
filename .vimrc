@@ -488,6 +488,7 @@ call plug#end()
             "\ 'coc-syntax',
             "\ 'coc-highlight',
             \ ]
+        autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 
         " use <tab> to trigger completion and navigate to the next complete item
         "function! CheckBackspace() abort
@@ -679,6 +680,7 @@ call plug#end()
     "
     " nerd-commenter{
        "read _ as /
+        let g:NERDCreateDefaultMappings = 0
         map <C-_> <plug>NERDCommenterToggle
     " }
     " ctrlp {
