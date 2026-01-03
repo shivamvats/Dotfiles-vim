@@ -283,6 +283,7 @@ call plug#end()
     nmap <Leader>n :tabnext<cr>
     nmap <Leader>p :tabprevious<cr>
     nmap <Leader>c :tabclose<cr>
+    nmap <Leader>ts :tab split<cr>
 
     " Show file path
     nmap <Leader>g 1<C-g>
@@ -587,6 +588,7 @@ call plug#end()
     " Vimtex {
     let g:vimtex_compiler_latexmk = {
             \ 'build_dir' : 'build',
+            \ 'out_dir' : 'build',
             \ 'continuous' : 1
             \}
     let g:vimtex_quickfix_autojump=0
@@ -599,7 +601,8 @@ call plug#end()
         let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
     else
         let g:vimtex_view_general_viewer='okular'
-        let g:vimtex_view_general_options_latexmk = '--unique'
+        "let g:vimtex_view_general_options_latexmk = '--unique'
+        let g:vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
      endif
      " }
 

@@ -5,7 +5,11 @@
     "diagnostic.enable": "true",
 
     "python.pythonPath":  "~/.vim/pyright_conda.sh",
-
+    "python.analysis.cacheFolder": "~/.vim/pyright_cache",
+    "pyright.inlayHints.enable": "false",
+    "pyright.inlayHints.variableTypes": "false",
+    "pyright.inlayHints.functionReturnTypes": "false",
+    "pyright.inlayHints.parameterTypes" : "false",
     "suggest.maxPreviewWidth": "45",
     "suggest.detailMaxLength": "30",
     "suggest.labelMaxLength": "15",
